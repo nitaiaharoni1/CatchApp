@@ -22,6 +22,10 @@ app.use(bodyParser.json()); // support json encoded bodies
 app.use(bodyParser.urlencoded({ extended: true })); // support encoded bodies
 var port = process.env.PORT || 5000;
 
+app.get("/", function(req,res){
+    res.send("Welcome")
+});
+
 app.post('/audio', function(req, res) {
     var audio = req.body;
 
