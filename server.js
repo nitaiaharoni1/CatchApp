@@ -20,20 +20,21 @@ const options = {
 var app = express();
 app.use(bodyParser.json()); // support json encoded bodies
 app.use(bodyParser.urlencoded({ extended: true })); // support encoded bodies
-var port = process.env.PORT || 5000;
+var port = process.env.PORT || 8000;
 
 app.get("/", function(req,res){
     res.send("Welcome")
 });
 
 app.post('/audio', function(req, res) {
-    var audio = req.body.file;
+    var audio = WAV(req.body.file);
 
     const recognizer = new speechService(options);
     recognizer.start((error, service) => {
+        let retString = "";
         if (!error) {
             console.log('recognition started');
-            service.sendFile('./audio1_short.wav');
+            service.sendFile(audio);
             service.on('recognition', (text) => {
                 if (text.RecognitionStatus === 'Success') {
                     console.log(text);
@@ -44,7 +45,7 @@ app.post('/audio', function(req, res) {
                         wiki().search(res.documents[0].keyPhrases[4], 10).then(data => {
                             console.log(data.results[0]);
                             wiki().page(data.results[0]).then(page => {
-                                page.summary().then(console.log);
+                                page.summary().then(retString = console.log);
                                 page.mainImage().then(console.log);
                             });
                         });
@@ -52,7 +53,7 @@ app.post('/audio', function(req, res) {
                 }
             });
         }
-        res.send('success');
+        res.send(retString);
     });
 });
 
