@@ -59,7 +59,7 @@ app.post('/upload', function(req, res) {
                 }
             });
         }
-        res.send(retString);
+        res.send("success!!!");
     });
 });
 
