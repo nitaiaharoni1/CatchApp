@@ -27,7 +27,7 @@ app.get("/", function(req,res){
 });
 
 app.post('/audio', function(req, res) {
-    //var audio = req.body.file;
+    var audio = req.body.file;
 
     const recognizer = new speechService(options);
     recognizer.start((error, service) => {
