@@ -7,6 +7,7 @@ process.env.COGSERV_TEXT_KEY = '7ed66a7ac625436f8b202ff503d5f336';
 const { keyPhrases, sentiment } = require('./text-analytics')
 
 const wiki = require('wikijs').default;
+const fileUpload = require('express-fileupload');
 
 //Bing Speech API
 const speechService = require('ms-bing-speech-service');
@@ -20,21 +21,26 @@ const options = {
 var app = express();
 app.use(bodyParser.json()); // support json encoded bodies
 app.use(bodyParser.urlencoded({ extended: true })); // support encoded bodies
-var port = process.env.PORT || 8000;
+app.use(fileUpload());
+var port = process.env.PORT || 8015;
 
 app.get("/", function(req,res){
     res.send("Welcome")
 });
 
-app.post('/audio', function(req, res) {
-    var audio = WAV(req.body.file);
-
+app.post('/upload', function(req, res) {
+    console.log(req.files.file);
+    let sampleFile = req.files.file;
+    sampleFile.mv('./' + sampleFile.name, function(err) {
+        if (err)
+            return res.status(500).send(err);
+    });
     const recognizer = new speechService(options);
     recognizer.start((error, service) => {
         let retString = "";
         if (!error) {
             console.log('recognition started');
-            service.sendFile(audio);
+            service.sendFile('./' + sampleFile.name);
             service.on('recognition', (text) => {
                 if (text.RecognitionStatus === 'Success') {
                     console.log(text);
