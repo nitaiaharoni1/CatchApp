@@ -4,7 +4,7 @@ const bodyParser = require('body-parser');
 //Text Analytics
 const cogserv = require('cogserv-text-analytics');
 process.env.COGSERV_TEXT_KEY = '7ed66a7ac625436f8b202ff503d5f336';
-const { keyPhrases, sentiment } = require('./text-analytics')
+const {keyPhrases, sentiment} = require('./text-analytics')
 
 const wiki = require('wikijs').default;
 const fileUpload = require('express-fileupload');
@@ -20,61 +20,67 @@ const options = {
 
 var app = express();
 app.use(bodyParser.json()); // support json encoded bodies
-app.use(bodyParser.urlencoded({ extended: true })); // support encoded bodies
+app.use(bodyParser.urlencoded({extended: true})); // support encoded bodies
 app.use(fileUpload());
 var port = process.env.PORT || 8015;
 
-app.get("/", function(req,res){
+app.get("/", function (req, res) {
     res.send("Welcome")
 });
 
-app.post('/upload', function(req, res) {
+app.post('/upload', function (req, res) {
     console.log(req.files.file);
     let sampleFile = req.files.file;
-    sampleFile.mv('./' + sampleFile.name, function(err) {
+    sampleFile.mv('./' + sampleFile.name, function (err) {
         if (err)
             return res.status(500).send(err);
     });
+
     const recognizer = new speechService(options);
     recognizer.start((error, service) => {
-        let retString = "";
+        let Out = {};
         if (!error) {
-            console.log('recognition started');
+            console.log('Recognition Started!');
             service.sendFile('./' + sampleFile.name);
-            service.on('recognition', (text) => {
-                if (text.RecognitionStatus === 'Success') {
-                    console.log(text);
-                    keyPhrases(text.DisplayText).then(res => JSON.parse(res)).then(res => {
-                        console.log(res.documents)
-                        //console.log(res.errors)
-                        //res.documents[0].keyPhrases[1]
-                        wiki().search(res.documents[0].keyPhrases[4], 10).then(data => {
-                            console.log(data.results[0]);
-                            wiki().page(data.results[0]).then(page => {
-                                page.summary().then(retString = console.log);
-                                page.mainImage().then(console.log);
+            service.on('recognition', (speechtotext) => {
+                if (speechtotext.RecognitionStatus === 'Success') {
+                    Out.text = speechtotext.DisplayText;
+                    Out.terms = [];
+                    console.log("Out Object text:", Out);
+                    keyPhrases(speechtotext.DisplayText).then(resPhrases => {
+                        resPhrases = JSON.parse(resPhrases);
+                        console.log("ResPhrases Here:", resPhrases.documents[0].keyPhrases);
+                        var counter = 0;
+                        resPhrases.documents[0].keyPhrases.forEach(function (item, i, array) {
+                            Out.terms.push({title: item});
+                            //console.log("Out Object with titles:", Out);
+
+                            wiki().search(item, 10).then(data => {
+                                //which result to choose??? 0, 1 or 2?? console.log(i + " wiki search:", data.results[0]);
+                                wiki().page(data.results[0]).then(page => {
+                                    page.summary().then(summary => {
+                                        Out.terms[i].summary = summary;
+                                        counter++;
+                                        if(counter == array.length){
+                                            console.log("Out: ", Out);
+                                            res.send(Out);
+                                        }
+                                    });
+                                    page.mainImage().then(mainImage => {
+                                        Out.terms[i].mainImage = mainImage;
+                                    });
+                                });
                             });
                         });
                     }).catch(err => console.error(err))
                 }
+
             });
         }
-        res.send("success!!!");
     });
 });
 
 app.listen(port);
-
-
-
-
-
-
-
-
-
-
-
 
 
 // var app = express();
@@ -115,10 +121,6 @@ app.listen(port);
 //
 //     res.send(user_id + ' ' + token + ' ' + geo);
 // });
-
-
-
-
 
 
 // var GoogleSearch = require('google-search');
