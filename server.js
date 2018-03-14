@@ -47,6 +47,7 @@ app.post('/upload', function (req, res) {
                     Out.text = speechtotext.DisplayText;
                     Out.terms = [];
                     console.log("Out Object text:", Out);
+                    res.send(Out);
                     keyPhrases(speechtotext.DisplayText).then(resPhrases => {
                         resPhrases = JSON.parse(resPhrases);
                         console.log("ResPhrases Here:", resPhrases.documents[0].keyPhrases);
