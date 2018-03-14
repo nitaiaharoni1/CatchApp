@@ -60,14 +60,19 @@ app.post('/upload', function (req, res) {
                                 wiki().page(data.results[0]).then(page => {
                                     page.summary().then(summary => {
                                         Out.terms[i].summary = summary;
-                                        counter++;
+                                        counter = counter + 0.5;
                                         if(counter == array.length){
                                             console.log("Out: ", Out);
                                             res.send(Out);
                                         }
                                     });
                                     page.mainImage().then(mainImage => {
-                                        Out.terms[i].mainImage = mainImage;
+                                        Out.terms[i].image = mainImage;
+                                        counter = counter + 0.5;
+                                        if(counter == array.length){
+                                            console.log("Out: ", Out);
+                                            res.send(Out);
+                                        }
                                     });
                                 });
                             });
