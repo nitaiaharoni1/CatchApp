@@ -33,18 +33,22 @@ app.post('/upload', function (req, res) {
     let out = {};
     let phrases;
     let userLang = req.body.userLanguage;
+    if(req.files.file.mimetype != "audio/wave"){
+        res.status(500).send('Wrong File Type')
+    }
     SpeechToText(filePath).then(retAnalyzedText => {
         analyzedText = retAnalyzedText;
-        console.log(analyzedText);
+        //console.log(analyzedText);
         getPhrases(analyzedText).then(retPhrases => {
             phrases = retPhrases;
-            console.log(phrases);
+            //console.log(phrases);
             wikiLoop(phrases, userLang).then(retWikiTerms => {
                 wikiTerms = retWikiTerms;
-                console.log(phrases);
+                //console.log(phrases);
                 out.text = analyzedText;
                 out.terms = phrases;
                 out.wiki = wikiTerms;
+                res.setHeader('Content-Type', 'application/json');
                 res.send(out);
             });
         });
