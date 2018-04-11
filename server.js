@@ -29,15 +29,14 @@ app.get("/", function (req, res) {
 
 app.post('/upload', function (req, res) {
     let filePath = './' + req.files.mFileName.name;
-    res.send(req.files);
     let analyzedText;
     let out = {};
     let phrases;
     //let userLang = req.body.userLanguage;
     let userLang = "fr";
     if(req.files.mFileName.mimetype != "audio/wave"){
-        console.log("check: " + req.files);
-        res.send("ok");
+        console.log("check: " + req.files.mFileName.mimetype);
+        res.send(req.files.mFileName.mimetype);
     }
     SpeechToText(filePath).then(retAnalyzedText => {
         analyzedText = retAnalyzedText;
