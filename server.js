@@ -2,7 +2,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 //Text Analytics
 const cogserv = require('cogserv-text-analytics');
-process.env.COGSERV_TEXT_KEY = '7ed66a7ac625436f8b202ff503d5f336';
+process.env.COGSERV_TEXT_KEY = '996f7b4c6b924383b3fe595509a7fec1';
 const {keyPhrases, sentiment} = require('./text-analytics')
 //Wikipedia API
 const wiki = require('wikijs').default;
@@ -12,7 +12,7 @@ const fileUpload = require('express-fileupload');
 const speechService = require('ms-bing-speech-service');
 const options = {
     language: 'en-US',
-    subscriptionKey: '5de01924d56642319d51dd4b8fa99331',
+    subscriptionKey: '94dabe3881d944099d322529affca28e',
     mode: 'dictation'
     //format: 'simple'
 };
