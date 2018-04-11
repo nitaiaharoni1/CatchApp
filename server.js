@@ -28,12 +28,13 @@ app.get("/", function (req, res) {
 });
 
 app.post('/upload', function (req, res) {
-    let filePath = './' + req.files.file.name;
+    let filePath = './' + req.files.mFileName.name;
     let analyzedText;
     let out = {};
     let phrases;
-    let userLang = req.body.userLanguage;
-    if(req.files.file.mimetype != "audio/wave"){
+    //let userLang = req.body.userLanguage;
+    let userLang = "fr";
+    if(req.files.mFileName.mimetype != "audio/wave"){
         res.send('Wrong File Type')
     }
     SpeechToText(filePath).then(retAnalyzedText => {
