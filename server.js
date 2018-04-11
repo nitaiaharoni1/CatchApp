@@ -36,8 +36,8 @@ app.post('/upload', function (req, res) {
     //let userLang = req.body.userLanguage;
     let userLang = "fr";
     if(req.files.mFileName.mimetype != "audio/wave"){
-        console.log("check: " + req.files.mFileName.mimetype);
-        res.send(req.files.mFileName.mimetype);
+        console.log("check: " + req.files);
+        res.send("ok");
     }
     SpeechToText(filePath).then(retAnalyzedText => {
         analyzedText = retAnalyzedText;
