@@ -79,7 +79,7 @@ async function SpeechToText(filePath) {
                     }
                 });
             }
-        });
+        }).catch(console.error);;
     });
     return retText;
 }
