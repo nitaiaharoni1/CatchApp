@@ -40,13 +40,13 @@ app.post('/upload', function (req, res) {
     }
     SpeechToText(filePath).then(retAnalyzedText => {
         analyzedText = retAnalyzedText;
-        //console.log(analyzedText);
+        console.log(analyzedText);
         getPhrases(analyzedText).then(retPhrases => {
             phrases = retPhrases;
-            //console.log(phrases);
+            console.log(phrases);
             wikiLoop(phrases, userLang).then(retWikiTerms => {
                 wikiTerms = retWikiTerms;
-                //console.log(phrases);
+                console.log(phrases);
                 out.text = analyzedText;
                 out.terms = phrases;
                 out.wiki = wikiTerms;
