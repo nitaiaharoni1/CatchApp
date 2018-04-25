@@ -76,6 +76,8 @@ async function SpeechToText(filePath) {
                         console.log("speech recognition error");
                     }
                 });
+            } else {
+                console.log("speech recognition error");
             }
         });
     });
