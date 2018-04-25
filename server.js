@@ -34,6 +34,7 @@ app.post('/upload', function (req, res) {
     let phrases;
     //let userLang = req.body.userLanguage;
     let userLang = "fr";
+
     if(req.files.mFileName.mimetype != "audio/wave"){
         console.log("check: " + req.files.mFileName.mimetype);
         req.files.mFileName.mimetype = "audio/wave";
@@ -72,12 +73,11 @@ async function SpeechToText(filePath) {
                     if (speechtotext.RecognitionStatus === 'Success') {
                         analyzedText = speechtotext.DisplayText;
                         resolve(analyzedText);
-                    } else{
-                        console.log("speech recognition error");
+                    } else {
+                        console.log(speechtotext);
+                        console.log(speechtotext.RecognitionStatus);
                     }
                 });
-            } else {
-                console.log("speech recognition error");
             }
         });
     });
