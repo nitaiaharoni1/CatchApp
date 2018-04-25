@@ -72,6 +72,8 @@ async function SpeechToText(filePath) {
                     if (speechtotext.RecognitionStatus === 'Success') {
                         analyzedText = speechtotext.DisplayText;
                         resolve(analyzedText);
+                    } else{
+                        console.log("speech recognition error");
                     }
                 });
             }
