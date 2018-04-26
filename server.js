@@ -21,6 +21,7 @@ var app = express();
 app.use(bodyParser.json()); // support json encoded bodies
 app.use(bodyParser.urlencoded({extended: true})); // support encoded bodies
 app.use(fileUpload());
+
 var port = process.env.PORT || 8010;
 
 app.get("/welcome", function (req, res) {
@@ -29,16 +30,17 @@ app.get("/welcome", function (req, res) {
 });
 
 app.post('/upload', function (req, res) {
+    res.setHeader('Content-Type', 'application/json');
     let filePath = './' + req.files.mFileName.name;
     let analyzedText;
     let out = {};
     let phrases;
     //let userLang = req.body.userLanguage;
     let userLang = "fr";
-
+    res.send(JSON.stringify({a: req.files.mFileName.mimetype}));
     if(req.files.mFileName.mimetype != "audio/wave"){
         console.log("check: " + req.files.mFileName.mimetype);
-        req.files.mFileName.mimetype = "audio/wave";
+        res.send(JSON.stringify({a: req.files.mFileName.mimetype}));
     }
     SpeechToText(filePath).then(retAnalyzedText => {
         analyzedText = retAnalyzedText;
@@ -52,8 +54,7 @@ app.post('/upload', function (req, res) {
                 out.text = analyzedText;
                 out.terms = phrases;
                 out.wiki = wikiTerms;
-                res.setHeader('Content-Type', 'application/json');
-                res.send(JSON.stringify({a:out}));
+                res.send(JSON.stringify({a: out}));
             });
         });
     });
