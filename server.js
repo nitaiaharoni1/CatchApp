@@ -31,7 +31,7 @@ app.get("/welcome", function (req, res) {
 
 app.post('/upload', function (req, res) {
     res.setHeader('Content-Type', 'application/json');
-    res.send(JSON.stringify({a: "send the file ya manyak"}));
+    //res.send(JSON.stringify({a: "send the file ya manyak"}));
 
     let filePath = './' + req.files.mFileName.name;
     let analyzedText;
