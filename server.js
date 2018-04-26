@@ -31,13 +31,14 @@ app.get("/welcome", function (req, res) {
 
 app.post('/upload', function (req, res) {
     res.setHeader('Content-Type', 'application/json');
+    res.send(JSON.stringify({a: "send the file ya manyak"}));
+
     let filePath = './' + req.files.mFileName.name;
     let analyzedText;
     let out = {};
     let phrases;
     //let userLang = req.body.userLanguage;
     let userLang = "fr";
-    res.send(JSON.stringify({a: "send the file ya manyak"}));
     if(req.files.mFileName.mimetype != "audio/wave"){
         console.log("check: " + req.files.mFileName.mimetype);
         res.send(JSON.stringify({a: req.files.mFileName.mimetype}));
