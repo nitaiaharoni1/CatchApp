@@ -24,7 +24,8 @@ app.use(fileUpload());
 var port = process.env.PORT || 8010;
 
 app.get("/welcome", function (req, res) {
-    res.send("Welcome")
+    res.setHeader('Content-Type', 'application/json');
+    res.send(JSON.stringify({a: "Welcome"}));
 });
 
 app.post('/upload', function (req, res) {
@@ -52,7 +53,7 @@ app.post('/upload', function (req, res) {
                 out.terms = phrases;
                 out.wiki = wikiTerms;
                 res.setHeader('Content-Type', 'application/json');
-                res.send(out);
+                res.send(JSON.stringify({a:out}));
             });
         });
     });
