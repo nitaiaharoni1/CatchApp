@@ -23,7 +23,7 @@ app.use(bodyParser.urlencoded({extended: true})); // support encoded bodies
 app.use(fileUpload());
 var port = process.env.PORT || 8010;
 
-app.get("/", function (req, res) {
+app.get("/welcome", function (req, res) {
     res.send("Welcome")
 });
 
@@ -79,7 +79,7 @@ async function SpeechToText(filePath) {
                     }
                 });
             }
-        }).catch(console.error);;
+        });
     });
     return retText;
 }

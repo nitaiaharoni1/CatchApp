@@ -9,6 +9,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@google-cloud/speech": "^1.4.0",
     "asyncawait": "^1.0.6",
     "body-parser": "^1.18.2",
     "cogserv-text-analytics": "^0.3.2",
