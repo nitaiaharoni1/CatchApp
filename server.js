@@ -39,7 +39,8 @@ app.post('/upload', function (req, res) {
     let phrases;
     //let userLang = req.body.userLanguage;
     let userLang = "fr";
-    if(req.files.mFileName.mimetype != "audio/wave"){
+
+    if(req.files.mFileName.mimetype != "audio/wave" || req.files.mFileName.mimetype != "audio/x-wav"){
         console.log("check: " + req.files.mFileName.mimetype);
         res.send(JSON.stringify({a: req.files.mFileName.mimetype}));
     }
