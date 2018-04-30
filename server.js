@@ -68,16 +68,17 @@ app.get("/welcome", function (req, res) {
 app.post('/upload', function (req, res) {
     res.setHeader('Content-Type', 'application/json');
     let filePath = './' + req.files.mFileName.name;
+    console.log(req.files);
     let analyzedText;
     let out = {};
     let phrases;
     //let userLang = req.body.userLanguage;
     let userLang = "fr";
 
-    if (req.files.mFileName.mimetype != "audio/wave") {
-        console.log("check: " + req.files.mFileName.mimetype);
-        res.send(JSON.stringify({a: req.files.mFileName.mimetype}));
-    }
+    // if (req.files.mFileName.mimetype != "audio/wave") {
+    //     console.log("check: " + req.files.mFileName.mimetype);
+    //     res.send(JSON.stringify({a: req.files.mFileName.mimetype}));
+    // }
     SpeechToTextGoogle(filePath).then(retAnalyzedText => {
         analyzedText = retAnalyzedText;
         console.log(analyzedText);
