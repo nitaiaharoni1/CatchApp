@@ -131,7 +131,7 @@ async function SpeechToTextGoogle(filePath) {
         let audioBytes = file.toString('base64');
         let request = {audio: {content: audioBytes,},
             config: {
-                encoding: 'LINEAR16',
+                encoding: 'AMR_WB',
                 sampleRateHertz: 16000,
                 languageCode: 'en-US',
             },
