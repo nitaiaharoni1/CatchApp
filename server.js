@@ -40,19 +40,20 @@ app.get("/terms", function (req, res) {
     //res.send(JSON.stringify({a: "OK"}));
 
     let text = req.headers.text;
-        console.log(text);
-        getPhrases(text).then(retPhrases => {
-            phrases = retPhrases;
-            console.log(phrases);
-            wikiLoop(phrases, userLang).then(retWikiTerms => {
-                wikiTerms = retWikiTerms;
-                console.log(wikiTerms);
-                out.text = text;
-                out.terms = phrases;
-                out.wiki = wikiTerms;
-                res.send(JSON.stringify({a: out}));
-            });
+    console.log(text);
+    res.send(JSON.stringify({a: text}))
+    getPhrases(text).then(retPhrases => {
+        phrases = retPhrases;
+        console.log(phrases);
+        wikiLoop(phrases, userLang).then(retWikiTerms => {
+            wikiTerms = retWikiTerms;
+            console.log(wikiTerms);
+            out.text = text;
+            out.terms = phrases;
+            out.wiki = wikiTerms;
+            res.send(JSON.stringify({a: out}));
         });
+    });
 
 });
 
@@ -120,7 +121,8 @@ async function SpeechToTextGoogle(filePath) {
         // Reads a local audio file and converts it to base64
         let file = fs.readFileSync(filePath);
         let audioBytes = file.toString('base64');
-        let request = {audio: {content: audioBytes,},
+        let request = {
+            audio: {content: audioBytes,},
             config: {
                 encoding: 'LINEAR16',
                 sampleRateHertz: 16000,
