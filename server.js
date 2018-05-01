@@ -48,7 +48,7 @@ app.get("/terms", function (req, res) {
             out.text = text;
             out.terms = phrases;
             out.wiki = wikiTerms;
-            res.send(JSON.stringify({a: out}));
+            res.send(out);
         });
     });
 
