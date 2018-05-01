@@ -33,7 +33,7 @@ app.use(fileUpload());
 
 var port = process.env.PORT || 8010;
 
-app.get("/welcome", function (req, res) {
+app.get("", function (req, res) {
     res.setHeader('Content-Type', 'application/json');
     res.send(JSON.stringify({a: "Welcome"}));
 });
@@ -64,6 +64,8 @@ app.get("/welcome", function (req, res) {
 //             console.error('ERROR:', err);
 //         });
 // });
+
+
 
 app.post('/upload', function (req, res) {
     res.setHeader('Content-Type', 'application/json');
@@ -131,7 +133,7 @@ async function SpeechToTextGoogle(filePath) {
         let audioBytes = file.toString('base64');
         let request = {audio: {content: audioBytes,},
             config: {
-                encoding: 'AMR_WB',
+                encoding: 'LINEAR16',
                 sampleRateHertz: 16000,
                 languageCode: 'en-US',
             },
