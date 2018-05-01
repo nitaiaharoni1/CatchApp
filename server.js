@@ -39,7 +39,6 @@ app.get("/terms", function (req, res) {
     let phrases;
     let text = req.headers.text;
     console.log(text);
-    res.send(JSON.stringify({a: text}))
     getPhrases(text).then(retPhrases => {
         phrases = retPhrases;
         console.log(phrases);
