@@ -9,7 +9,6 @@ const configGoogle = {
     keyFilename: './google-speech/Catchapp-24f90e9bc6d3.json'
 };
 
-
 const cogserv = require('cogserv-text-analytics'); //Text Analytics
 process.env.COGSERV_TEXT_KEY = '996f7b4c6b924383b3fe595509a7fec1';
 const {keyPhrases, sentiment} = require('./text-analytics')
@@ -33,39 +32,27 @@ app.use(fileUpload());
 
 var port = process.env.PORT || 8010;
 
-app.get("", function (req, res) {
+app.get("/terms", function (req, res) {
     res.setHeader('Content-Type', 'application/json');
-    res.send(JSON.stringify({a: "Welcome"}));
+    let out = {};
+    let userLang = "fr";
+    let phrases;
+    let text = req.headers.text;
+        console.log(text);
+        getPhrases(text).then(retPhrases => {
+            phrases = retPhrases;
+            console.log(phrases);
+            wikiLoop(phrases, userLang).then(retWikiTerms => {
+                wikiTerms = retWikiTerms;
+                console.log(wikiTerms);
+                out.text = text;
+                out.terms = phrases;
+                out.wiki = wikiTerms;
+                res.send(JSON.stringify({a: out}));
+            });
+        });
+
 });
-
-// app.post('/uploadGoogle', function (req, res) {
-//     res.setHeader('Content-Type', 'application/json');
-//     let filePath = './' + req.files.mFileName.name;
-//     var client = new speech.SpeechClient(configGoogle);
-// // Reads a local audio file and converts it to base64
-//     var file = fs.readFileSync(filePath);
-//     var audioBytes = file.toString('base64');
-//     var request = {
-//         audio: {
-//             content: audioBytes,
-//         },
-//         config: {
-//             encoding: 'LINEAR16',
-//             sampleRateHertz: 8000,
-//             languageCode: 'en-US',
-//         },
-//     };
-// // Detects speech in the audio file
-//     client.recognize(request).then(data => {
-//             var transcription = data[0].results[0].alternatives[0].transcript;
-//             console.log('Transcription:',transcription);
-//             res.send(transcription);
-//         }).catch(err => {
-//             console.error('ERROR:', err);
-//         });
-// });
-
-
 
 app.post('/upload', function (req, res) {
     res.setHeader('Content-Type', 'application/json');
