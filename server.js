@@ -38,6 +38,7 @@ app.get("/terms", function (req, res) {
     let userLang = "fr";
     let phrases;
     //res.send(JSON.stringify({a: "OK"}));
+    res.send(JSON.stringify({a: req}))
 
     let text = req.headers.text;
     console.log(text);
