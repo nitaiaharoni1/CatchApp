@@ -132,7 +132,7 @@ async function wikiTerm(term, userLang) {
                         langSearch = searched.results[0];
                         langCountry = "en";
                         for (var i = 0; i < langsArray.length; i++) {
-                            if (langsArray[i].lang == userLang) {
+                            if (langsArray[i].lang == userLang.toLowerCase()) {
                                 langSearch = langsArray[i].title;
                                 langCountry = userLang;
                                 break;
