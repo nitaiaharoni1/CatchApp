@@ -36,9 +36,9 @@ app.listen(port);
 app.get("/terms", function (req, res) {
     res.setHeader('Content-Type', 'application/json');
     let out = {};
-    let userLang = "fr";
     let phrases;
     let text = req.headers.text;
+    let userLang = req.headers.lang;
     if (text.length == 0) {
         res.send(out);
     }
