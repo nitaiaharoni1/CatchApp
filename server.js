@@ -39,6 +39,9 @@ app.get("/terms", function (req, res) {
     let phrases;
     let text = req.headers.text;
     let userLang = req.headers.lang;
+    console.log(text);
+    console.log(userLang);
+
     if (text.length == 0) {
         res.send(out);
     }
@@ -128,7 +131,6 @@ async function wikiTerm(term, userLang) {
                         }
                         langSearch = searched.results[0];
                         langCountry = "en";
-                        var j = langsArray.indexOf("Apple");
                         for (var i = 0; i < langsArray.length; i++) {
                             if (langsArray[i].lang == userLang) {
                                 langSearch = langsArray[i].title;
