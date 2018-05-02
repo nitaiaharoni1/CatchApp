@@ -124,56 +124,103 @@ async function wikiTerm(term, userLang) {
             }
             //which result to choose??? 0, 1 or 2?
             wiki().page(searched.results[0]).then(page => {
-                try {
-                    page.langlinks().then(langsArray => {
-                        if (langsArray.length < 3) {    //does not return object with less then 5 translations
-                            resolve(obj);
-                        }
-                        langSearch = searched.results[0];
-                        langCountry = "en";
-                        for (var i = 0; i < langsArray.length; i++) {
-                            if (langsArray[i].lang == userLang.toLowerCase()) {
-                                langSearch = langsArray[i].title;
-                                langCountry = userLang;
-                                break;
-                            }
-                        }
-                        wiki({apiUrl: 'http://' + langCountry + '.wikipedia.org/w/api.php'}).page(langSearch).then(page => {
-                            obj.title = langSearch;
-                            obj.url = page.raw.fullurl;
-                            page.summary().then(summary => {
-                                obj.summery = summary;
-                                if (obj.image != undefined) {
-                                    resolve(obj);
-                                }
-                            }).catch(err => {
-                                obj.summery = "";
-                                if (obj.image != undefined) {
-                                    resolve(obj);
-                                }
-                            });
-                            page.mainImage().then(mainImage => {
-                                obj.image = mainImage;
-                                if (obj.summery != undefined) {
-                                    resolve(obj);
-                                }
-                            }).catch(err => {
-                                obj.image = "";
-                                if (obj.summery != undefined) {
-                                    resolve(obj);
-                                }
+                page.html().then(html => {
+                    if (html.indexOf("may refer to") != -1) {
+                        page.links().then(links => {
+                            console.log(links);
+                            wiki().page(links[0]).then(page => {
+                                page.langlinks().then(langsArray => {
+                                    if (langsArray.length < 3) {    //does not return object with less then 5 translations
+                                        resolve(obj);
+                                    }
+                                    langSearch = page.raw.title;
+                                    langCountry = "en";
+                                    for (var i = 0; i < langsArray.length; i++) {
+                                        if (langsArray[i].lang == userLang.toLowerCase()) {
+                                            langSearch = langsArray[i].title;
+                                            langCountry = userLang;
+                                            break;
+                                        }
+                                    }
+                                    wiki({apiUrl: 'http://' + langCountry + '.wikipedia.org/w/api.php'}).page(langSearch).then(page => {
+                                        obj.title = langSearch;
+                                        obj.url = page.raw.fullurl;
+                                        page.summary().then(summary => {
+                                            obj.summery = summary;
+                                            if (obj.image != undefined) {
+                                                resolve(obj);
+                                            }
+                                        }).catch(err => {
+                                            obj.summery = "";
+                                            if (obj.image != undefined) {
+                                                resolve(obj);
+                                            }
+                                        });
+                                        page.mainImage().then(mainImage => {
+                                            obj.image = mainImage;
+                                            if (obj.summery != undefined) {
+                                                resolve(obj);
+                                            }
+                                        }).catch(err => {
+                                            obj.image = "";
+                                            if (obj.summery != undefined) {
+                                                resolve(obj);
+                                            }
+                                        });
+                                    });
+                                });
                             });
                         });
-                    });
-                } catch (error) {
-                    console.error(error);
-                }
+                    } else {
+                        page.langlinks().then(langsArray => {
+                            if (langsArray.length < 3) {    //does not return object with less then 5 translations
+                                resolve(obj);
+                            }
+                            langSearch = searched.results[0];
+                            langCountry = "en";
+                            for (var i = 0; i < langsArray.length; i++) {
+                                if (langsArray[i].lang == userLang.toLowerCase()) {
+                                    langSearch = langsArray[i].title;
+                                    langCountry = userLang;
+                                    break;
+                                }
+                            }
+                            wiki({apiUrl: 'http://' + langCountry + '.wikipedia.org/w/api.php'}).page(langSearch).then(page => {
+                                obj.title = langSearch;
+                                obj.url = page.raw.fullurl;
+                                page.summary().then(summary => {
+                                    obj.summery = summary;
+                                    if (obj.image != undefined) {
+                                        resolve(obj);
+                                    }
+                                }).catch(err => {
+                                    obj.summery = "";
+                                    if (obj.image != undefined) {
+                                        resolve(obj);
+                                    }
+                                });
+                                page.mainImage().then(mainImage => {
+                                    obj.image = mainImage;
+                                    if (obj.summery != undefined) {
+                                        resolve(obj);
+                                    }
+                                }).catch(err => {
+                                    obj.image = "";
+                                    if (obj.summery != undefined) {
+                                        resolve(obj);
+                                    }
+                                });
+                            });
+                        });
+                    }
+                });
             });
-        }).catch(err => {
-            console.error(err);
-            resolve(obj);
         });
+    }).catch(err => {
+        console.error(err);
+        resolve(obj);
     });
+
     return retWikiTerm;
 }
 
