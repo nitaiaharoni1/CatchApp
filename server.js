@@ -52,7 +52,7 @@ app.get("/phrases", function (req, res) {
     }
     getPhrases(text).then(retPhrases => {
         phrases = retPhrases;
-        res.send({"phrases" : phrases});
+        res.send({"phrases": phrases});
     });
 });
 
@@ -196,6 +196,9 @@ async function langPage(page, userLang) {
                     }
                 });
             });
+        }).catch(err => {
+            obj = {};
+            resolve(obj);
         });
     });
     return langObj;
