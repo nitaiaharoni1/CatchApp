@@ -43,9 +43,10 @@ app.get("/terms", function (req, res) {
 });
 
 app.get("/phrases", function (req, res) {
+    console.log(req);
     res.setHeader('Content-Type', 'application/json');
     let phrases = [];
-    let text = req.query.text;
+    let text = req.params.text;
     if (text.length == 0) {
         res.send(phrases);
     }
