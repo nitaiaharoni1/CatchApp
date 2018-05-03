@@ -46,7 +46,7 @@ app.get("/phrases", function (req, res) {
     console.log(req);
     res.setHeader('Content-Type', 'application/json');
     let phrases = [];
-    let text = req.params.text;
+    let text = req.headers.text;
     if (text.length == 0) {
         res.send(phrases);
     }
