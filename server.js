@@ -15,32 +15,35 @@ app.use(bodyParser.urlencoded({extended: true})); // support encoded bodies
 var port = process.env.PORT || 8010;
 app.listen(port);
 
-app.get("/terms", function (req, res) {
-    res.setHeader('Content-Type', 'application/json');
-    let out = {};
-    let phrases;
-    let text = req.headers.text;
-    let userLang = req.headers.lang;
-    console.log(text);
-    console.log(userLang);
-
-    if (text.length == 0) {
-        res.send(out);
-    }
-    //console.log(text);
-    getPhrases(text).then(retPhrases => {
-        phrases = retPhrases;
-        phrasesLoop(phrases, userLang).then(retWikiTerms => {
-            wikiTerms = retWikiTerms;
-            //console.log(wikiTerms);
-            out.text = text;
-            out.terms = phrases;
-            out.wiki = wikiTerms;
-            res.send(out);
-        });
-    });
-
-});
+// app.get("/terms", function (req, res) {
+//     res.setHeader('Content-Type', 'application/json');
+//     let out = {};
+//     let phrases;
+//     let text = req.headers.text;
+//     let userLang = req.headers.lang;
+//     console.log(text);
+//     console.log(userLang);
+//
+//     if (text.length == 0) {
+//         res.send(out);
+//     }
+//     //console.log(text);
+//     getPhrases(text).then(retPhrases => {
+//         phrases = retPhrases;
+//         phrasesLoop(phrases, userLang).then(retWikiTerms => {
+//             wikiTerms = retWikiTerms;
+//             //console.log(wikiTerms);
+//             out.text = text;
+//             out.terms = phrases;
+//             out.wiki = wikiTerms;
+//             res.send(out);
+//         }).catch(err => {
+//             console.error(err);
+//         });
+//     }).catch(err => {
+//         console.error(err);
+//     });
+// });
 
 app.get("/phrases", function (req, res) {
     //console.log(req);
@@ -53,6 +56,8 @@ app.get("/phrases", function (req, res) {
     getPhrases(text).then(retPhrases => {
         phrases = retPhrases;
         res.send({"phrases": phrases});
+    }).catch(err => {
+        console.error(err);
     });
 });
 
@@ -68,12 +73,11 @@ app.post("/wiki", function (req, res) {
     }
     phrasesLoop(phrases, userLang).then(retWikiTerms => {
         wikiTerms = retWikiTerms;
-        //console.log(wikiTerms);
-        out.terms = phrases;
-        out.wiki = wikiTerms;
+        out = wikiTerms;
         res.send(out);
+    }).catch(err => {
+        console.error(err);
     });
-
 });
 
 
@@ -118,16 +122,30 @@ async function wikiTerm(term, userLang) {
                             wiki().page(links[0]).then(page => {
                                 langPage(page, userLang).then(obj => {
                                     resolve(obj);
+                                }).catch(err => {
+                                    console.error(err);
                                 });
+                            }).catch(err => {
+                                console.error(err);
                             });
+                        }).catch(err => {
+                            console.error(err);
                         });
                     } else {
-                        langPage(page, userLang,term).then(obj => {
+                        langPage(page, userLang).then(obj => {
                             resolve(obj);
+                        }).catch(err => {
+                            console.error(err);
                         });
                     }
+                }).catch(err => {
+                    console.error(err);
                 });
+            }).catch(err => {
+                console.error(err);
             });
+        }).catch(err => {
+            console.error(err);
         });
     }).catch(err => {
         console.error(err);
@@ -140,24 +158,25 @@ async function wikiTerm(term, userLang) {
 async function phrasesLoop(phrases, userLang) {
     var retWikiTerms = await new Promise(resolve => {
         var counter = 0;
-        let array = [];
+        let obj = {};
         phrases.forEach(function (term, i) {
-            wikiTerm(term, userLang).then(obj => {
-                array.push(obj);
+            wikiTerm(term, userLang).then(wiki => {
+                obj[term] = wiki;
                 counter++;
                 if (counter == phrases.length) {
-                    resolve(array);
+                    resolve(obj);
                 }
+            }).catch(err => {
+                console.error(err);
             });
         });
     });
     return retWikiTerms;
 }
 
-async function langPage(page, userLang,term) {
+async function langPage(page, userLang) {
     var langObj = await new Promise(resolve => {
         var obj = {};
-        obj.term = term;
         page.langlinks().then(langsArray => {
             if (langsArray.length < 3) {    //does not return object with less then 5 translations
                 resolve(obj);
@@ -196,6 +215,8 @@ async function langPage(page, userLang,term) {
                         resolve(obj);
                     }
                 });
+            }).catch(err => {
+                console.error(err);
             });
         }).catch(err => {
             obj = {};

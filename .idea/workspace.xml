@@ -15,8 +15,8 @@
       <file leaf-file-name="server.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/server.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="139">
-              <caret line="160" column="45" lean-forward="true" selection-start-line="160" selection-start-column="45" selection-end-line="160" selection-end-column="45" />
+            <state relative-caret-position="294">
+              <caret line="221" column="21" lean-forward="true" selection-start-line="221" selection-start-column="21" selection-end-line="221" selection-end-column="21" />
               <folding />
             </state>
           </provider>
@@ -33,10 +33,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>lang</find>
-      <find>documents</find>
-      <find>BingSpeechService</find>
-      <find>text</find>
       <find>const fs \= require\(\'fs\'\)\;\n\nlet readfile \= function\(path\, callback\)\{\n    let bytearray \= fs\.readFile\;\n        callback\(fs\.readFile\)\;\n\}\n\nmodule\.exports\.readfile \= readfile\;</find>
       <find>sendfile</find>
       <find>chunk</find>
@@ -63,6 +59,10 @@
       <find>for</find>
       <find>out.</find>
       <find>langPage(</find>
+      <find>then</find>
+      <find>phrasesLoop(</find>
+      <find>term</find>
+      <find>te</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -294,12 +294,12 @@
       <workItem from="1524741818776" duration="6027000" />
       <workItem from="1524771815772" duration="124000" />
       <workItem from="1524995903535" duration="9440000" />
-      <workItem from="1525125262835" duration="33296000" />
+      <workItem from="1525125262835" duration="34696000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="166374000" />
+    <option name="totallyTimeSpent" value="167774000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-9" y="-9" width="1938" height="1048" extended-state="6" />
@@ -345,55 +345,55 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/server.js</url>
-          <line>153</line>
+          <line>173</line>
           <properties lambdaOrdinal="-1" />
           <option name="timeStamp" value="185" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/server.js</url>
-          <line>125</line>
+          <line>135</line>
           <properties lambdaOrdinal="-1" />
           <option name="timeStamp" value="193" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/server.js</url>
-          <line>69</line>
+          <line>74</line>
           <properties lambdaOrdinal="-1" />
           <option name="timeStamp" value="201" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/server.js</url>
-          <line>99</line>
+          <line>103</line>
           <properties lambdaOrdinal="-1" />
           <option name="timeStamp" value="203" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/server.js</url>
-          <line>84</line>
+          <line>88</line>
           <properties lambdaOrdinal="-1" />
           <option name="timeStamp" value="204" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/server.js</url>
-          <line>87</line>
+          <line>91</line>
           <properties lambdaOrdinal="-1" />
           <option name="timeStamp" value="206" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/server.js</url>
-          <line>160</line>
+          <line>179</line>
           <properties lambdaOrdinal="-1" />
           <option name="timeStamp" value="215" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/server.js</url>
-          <line>161</line>
+          <line>180</line>
           <properties lambdaOrdinal="-1" />
           <option name="timeStamp" value="216" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/server.js</url>
-          <line>200</line>
+          <line>221</line>
           <properties lambdaOrdinal="-1" />
           <option name="timeStamp" value="217" />
         </line-breakpoint>
@@ -683,8 +683,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/server.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="139">
-          <caret line="160" column="45" lean-forward="true" selection-start-line="160" selection-start-column="45" selection-end-line="160" selection-end-column="45" />
+        <state relative-caret-position="294">
+          <caret line="221" column="21" lean-forward="true" selection-start-line="221" selection-start-column="21" selection-end-line="221" selection-end-column="21" />
           <folding />
         </state>
       </provider>
