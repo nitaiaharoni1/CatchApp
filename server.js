@@ -59,7 +59,8 @@ app.get("/phrases", function (req, res) {
 app.post("/wiki", function (req, res) {
     res.setHeader('Content-Type', 'application/json');
     let out = {};
-    let phrases = req.body.phrases;
+    console.log(req);
+    let phrases = Object.keys(req.body);
     let userLang = req.query.lang;
     if (phrases.length == 0) {
         res.send(out);
