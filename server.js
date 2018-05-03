@@ -122,7 +122,7 @@ async function wikiTerm(term, userLang) {
                             });
                         });
                     } else {
-                        langPage(page, userLang).then(obj => {
+                        langPage(page, userLang,term).then(obj => {
                             resolve(obj);
                         });
                     }
@@ -154,9 +154,10 @@ async function phrasesLoop(phrases, userLang) {
     return retWikiTerms;
 }
 
-async function langPage(page, userLang) {
+async function langPage(page, userLang,term) {
     var langObj = await new Promise(resolve => {
         var obj = {};
+        obj.term = term;
         page.langlinks().then(langsArray => {
             if (langsArray.length < 3) {    //does not return object with less then 5 translations
                 resolve(obj);
