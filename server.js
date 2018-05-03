@@ -43,7 +43,7 @@ app.get("/terms", function (req, res) {
 });
 
 app.get("/phrases", function (req, res) {
-    console.log(req);
+    //console.log(req);
     res.setHeader('Content-Type', 'application/json');
     let phrases = [];
     let text = req.headers.text;
