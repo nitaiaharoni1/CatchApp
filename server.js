@@ -78,21 +78,26 @@ app.post("/wiki", function (req, res) {
 //Functions
 async function getPhrases(text) {
     var retPhrases = await new Promise(resolve => {
-        let phrases;
+        let arrPhrases;
+        let jsonPhrases = {};
+
         keyPhrases(text).then(resPhrases => {
             resPhrases = JSON.parse(resPhrases);
             try {
-                phrases = resPhrases.documents[0].keyPhrases;
-                resolve(phrases);
+                arrPhrases = resPhrases.documents[0].keyPhrases;
+                for (var i = 0; i < arrPhrases.length; i++) {
+                    jsonPhrases[arrPhrases[i]] = "";
+                }
+                resolve(jsonPhrases);
             } catch (error) {
                 console.error(err);
-                phrases = [];
-                resolve(phrases);
+                jsonPhrases = {};
+                resolve(jsonPhrases);
             }
         }).catch(err => {
             console.error(err);
-            phrases = [];
-            resolve(phrases);
+            jsonPhrases = {};
+            resolve(jsonPhrases);
         });
     });
     return retPhrases;
