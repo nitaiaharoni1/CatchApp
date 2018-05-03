@@ -60,6 +60,8 @@ app.post("/wiki", function (req, res) {
     res.setHeader('Content-Type', 'application/json');
     let out = {};
     console.log(req.body);
+    console.log(req.headers.lang);
+
     let phrases = Object.keys(req.body);
     let userLang = req.headers.lang;
     if (phrases.length == 0) {
