@@ -1,23 +1,5 @@
 const express = require('express');
-// const bodyParser = require('body-parser');
-
-// const fs = require('fs');
-// const fileUpload = require('express-fileupload'); //File Upload API
-
-
-// const speech = require("@google-cloud/speech"); // Google Speech API
-// const configGoogle = {
-//     projectId: 'dulcet-pilot-202710',
-//     keyFilename: './google-speech/Catchapp-24f90e9bc6d3.json'
-// };
-
-// const speechService = require('ms-bing-speech-service');//Bing Speech API
-// const speechServiceOptions = {
-//     language: 'en-US',
-//     subscriptionKey: '94dabe3881d944099d322529affca28e',
-//     mode: 'dictation'
-//     //format: 'simple'
-// };
+const bodyParser = require('body-parser');
 
 const cogserv = require('cogserv-text-analytics'); //Text Analytics
 process.env.COGSERV_TEXT_KEY = '996f7b4c6b924383b3fe595509a7fec1';
@@ -26,8 +8,8 @@ const {keyPhrases, sentiment} = require('./text-analytics')
 const wiki = require('wikijs').default; //Wikipedia API
 
 var app = express();
-// app.use(bodyParser.json()); // support json encoded bodies
-// app.use(bodyParser.urlencoded({extended: true})); // support encoded bodies
+app.use(bodyParser.json()); // support json encoded bodies
+app.use(bodyParser.urlencoded({extended: true})); // support encoded bodies
 // app.use(fileUpload());
 
 var port = process.env.PORT || 8010;
@@ -48,8 +30,7 @@ app.get("/terms", function (req, res) {
     //console.log(text);
     getPhrases(text).then(retPhrases => {
         phrases = retPhrases;
-        //console.log(phrases);
-        wikiLoop(phrases, userLang).then(retWikiTerms => {
+        phrasesLoop(phrases, userLang).then(retWikiTerms => {
             wikiTerms = retWikiTerms;
             //console.log(wikiTerms);
             out.text = text;
@@ -60,6 +41,181 @@ app.get("/terms", function (req, res) {
     });
 
 });
+
+app.get("/phrases", function (req, res) {
+    res.setHeader('Content-Type', 'application/json');
+    let phrases = [];
+    let text = req.query.text;
+    if (text.length == 0) {
+        res.send(phrases);
+    }
+    getPhrases(text).then(retPhrases => {
+        phrases = retPhrases;
+        res.send(phrases);
+    });
+});
+
+app.post("/wiki", function (req, res) {
+    res.setHeader('Content-Type', 'application/json');
+    let out = {};
+    let phrases = req.body.phrases;
+    let userLang = req.query.lang;
+    if (phrases.length == 0) {
+        res.send(out);
+    }
+    phrasesLoop(phrases, userLang).then(retWikiTerms => {
+        wikiTerms = retWikiTerms;
+        //console.log(wikiTerms);
+        out.terms = phrases;
+        out.wiki = wikiTerms;
+        res.send(out);
+    });
+
+});
+
+
+//Functions
+async function getPhrases(text) {
+    var retPhrases = await new Promise(resolve => {
+        let phrases;
+        keyPhrases(text).then(resPhrases => {
+            resPhrases = JSON.parse(resPhrases);
+            try {
+                phrases = resPhrases.documents[0].keyPhrases;
+                resolve(phrases);
+            } catch (error) {
+                console.error(err);
+                phrases = [];
+                resolve(phrases);
+            }
+        }).catch(err => {
+            console.error(err);
+            phrases = [];
+            resolve(phrases);
+        });
+    });
+    return retPhrases;
+}
+
+async function wikiTerm(term, userLang) {
+    var retWikiTerms = await new Promise(resolve => {
+        let langCountry;
+        let obj = {};
+        let counter = 0;
+        wiki().search(term, 1).then(searched => {
+            if (searched.results.length == 0) {
+                resolve(obj);
+            }
+            //which result to choose??? 0, 1 or 2?
+            wiki().page(searched.results[0]).then(page => {
+                page.html().then(html => {
+                    if (html.indexOf("may refer to") != -1) {
+                        page.links().then(links => {
+                            //console.log(links);
+                            wiki().page(links[0]).then(page => {
+                                langPage(page, userLang).then(obj => {
+                                    resolve(obj);
+                                });
+                            });
+                        });
+                    } else {
+                        langPage(page, userLang).then(obj => {
+                            resolve(obj);
+                        });
+                    }
+                });
+            });
+        });
+    }).catch(err => {
+        console.error(err);
+        resolve(obj);
+    });
+
+    return retWikiTerms;
+}
+
+async function phrasesLoop(phrases, userLang) {
+    var retWikiTerms = await new Promise(resolve => {
+        var counter = 0;
+        let array = [];
+        phrases.forEach(function (term, i) {
+            wikiTerm(term, userLang).then(obj => {
+                array.push(obj);
+                counter++;
+                if (counter == phrases.length) {
+                    resolve(array);
+                }
+            });
+        });
+    });
+    return retWikiTerms;
+}
+
+async function langPage(page, userLang) {
+    var langObj = await new Promise(resolve => {
+        var obj = {};
+        page.langlinks().then(langsArray => {
+            if (langsArray.length < 3) {    //does not return object with less then 5 translations
+                resolve(obj);
+            }
+            langTitle = page.raw.title;
+            langCountry = "en";
+            for (var i = 0; i < langsArray.length; i++) {
+                if (langsArray[i].lang == userLang.toLowerCase()) {
+                    langTitle = langsArray[i].title;
+                    langCountry = userLang;
+                    break;
+                }
+            }
+            wiki({apiUrl: 'http://' + langCountry + '.wikipedia.org/w/api.php'}).page(langTitle).then(page => {
+                obj.title = page.raw.title;
+                obj.url = page.raw.fullurl;
+                page.summary().then(summary => {
+                    obj.summery = summary;
+                    if (obj.image != undefined) {
+                        resolve(obj);
+                    }
+                }).catch(err => {
+                    obj.summery = "";
+                    if (obj.image != undefined) {
+                        resolve(obj);
+                    }
+                });
+                page.mainImage().then(mainImage => {
+                    obj.image = mainImage;
+                    if (obj.summery != undefined) {
+                        resolve(obj);
+                    }
+                }).catch(err => {
+                    obj.image = "";
+                    if (obj.summery != undefined) {
+                        resolve(obj);
+                    }
+                });
+            });
+        });
+    });
+    return langObj;
+}
+
+
+// const fs = require('fs');
+// const fileUpload = require('express-fileupload'); //File Upload API
+
+
+// const speech = require("@google-cloud/speech"); // Google Speech API
+// const configGoogle = {
+//     projectId: 'dulcet-pilot-202710',
+//     keyFilename: './google-speech/Catchapp-24f90e9bc6d3.json'
+// };
+
+// const speechService = require('ms-bing-speech-service');//Bing Speech API
+// const speechServiceOptions = {
+//     language: 'en-US',
+//     subscriptionKey: '94dabe3881d944099d322529affca28e',
+//     mode: 'dictation'
+//     //format: 'simple'
+// };
 
 // app.post('/upload', function (req, res) {
 //     res.setHeader('Content-Type', 'application/json');
@@ -88,158 +244,6 @@ app.get("/terms", function (req, res) {
 //     });
 // });
 
-
-//Functions
-async function getPhrases(text) {
-    var retPhrases = await new Promise(resolve => {
-        let phrases;
-        keyPhrases(text).then(resPhrases => {
-            resPhrases = JSON.parse(resPhrases);
-            try {
-                phrases = resPhrases.documents[0].keyPhrases;
-                resolve(phrases);
-            } catch (error) {
-                console.error(err);
-                phrases = [];
-                resolve(phrases);
-            }
-        }).catch(err => {
-            console.error(err);
-            phrases = [];
-            resolve(phrases);
-        });
-    });
-    return retPhrases;
-}
-
-async function wikiTerm(term, userLang) {
-    var retWikiTerm = await new Promise(resolve => {
-        let langCountry;
-        let langSearch;
-        let obj = {};
-        let counter = 0;
-        wiki().search(term, 1).then(searched => {
-            if (searched.results.length == 0) {
-                resolve(obj);
-            }
-            //which result to choose??? 0, 1 or 2?
-            wiki().page(searched.results[0]).then(page => {
-                page.html().then(html => {
-                    if (html.indexOf("may refer to") != -1) {
-                        page.links().then(links => {
-                            console.log(links);
-                            wiki().page(links[0]).then(page => {
-                                page.langlinks().then(langsArray => {
-                                    if (langsArray.length < 3) {    //does not return object with less then 5 translations
-                                        resolve(obj);
-                                    }
-                                    langSearch = page.raw.title;
-                                    langCountry = "en";
-                                    for (var i = 0; i < langsArray.length; i++) {
-                                        if (langsArray[i].lang == userLang.toLowerCase()) {
-                                            langSearch = langsArray[i].title;
-                                            langCountry = userLang;
-                                            break;
-                                        }
-                                    }
-                                    wiki({apiUrl: 'http://' + langCountry + '.wikipedia.org/w/api.php'}).page(langSearch).then(page => {
-                                        obj.title = langSearch;
-                                        obj.url = page.raw.fullurl;
-                                        page.summary().then(summary => {
-                                            obj.summery = summary;
-                                            if (obj.image != undefined) {
-                                                resolve(obj);
-                                            }
-                                        }).catch(err => {
-                                            obj.summery = "";
-                                            if (obj.image != undefined) {
-                                                resolve(obj);
-                                            }
-                                        });
-                                        page.mainImage().then(mainImage => {
-                                            obj.image = mainImage;
-                                            if (obj.summery != undefined) {
-                                                resolve(obj);
-                                            }
-                                        }).catch(err => {
-                                            obj.image = "";
-                                            if (obj.summery != undefined) {
-                                                resolve(obj);
-                                            }
-                                        });
-                                    });
-                                });
-                            });
-                        });
-                    } else {
-                        page.langlinks().then(langsArray => {
-                            if (langsArray.length < 3) {    //does not return object with less then 5 translations
-                                resolve(obj);
-                            }
-                            langSearch = searched.results[0];
-                            langCountry = "en";
-                            for (var i = 0; i < langsArray.length; i++) {
-                                if (langsArray[i].lang == userLang.toLowerCase()) {
-                                    langSearch = langsArray[i].title;
-                                    langCountry = userLang;
-                                    break;
-                                }
-                            }
-                            wiki({apiUrl: 'http://' + langCountry + '.wikipedia.org/w/api.php'}).page(langSearch).then(page => {
-                                obj.title = langSearch;
-                                obj.url = page.raw.fullurl;
-                                page.summary().then(summary => {
-                                    obj.summery = summary;
-                                    if (obj.image != undefined) {
-                                        resolve(obj);
-                                    }
-                                }).catch(err => {
-                                    obj.summery = "";
-                                    if (obj.image != undefined) {
-                                        resolve(obj);
-                                    }
-                                });
-                                page.mainImage().then(mainImage => {
-                                    obj.image = mainImage;
-                                    if (obj.summery != undefined) {
-                                        resolve(obj);
-                                    }
-                                }).catch(err => {
-                                    obj.image = "";
-                                    if (obj.summery != undefined) {
-                                        resolve(obj);
-                                    }
-                                });
-                            });
-                        });
-                    }
-                });
-            });
-        });
-    }).catch(err => {
-        console.error(err);
-        resolve(obj);
-    });
-
-    return retWikiTerm;
-}
-
-async function wikiLoop(phrases, userLang) {
-    var retWikiTerms = await new Promise(resolve => {
-        var counter = 0;
-        let array = [];
-        phrases.forEach(function (term, i) {
-            wikiTerm(term, userLang).then(obj => {
-                array.push(obj);
-                counter++;
-                if (counter == phrases.length) {
-                    resolve(array);
-                }
-            });
-        });
-    });
-    return retWikiTerms;
-}
 
 // async function SpeechToTextMicrosoft(filePath) {
 //     var retText = await new Promise(resolve => {
