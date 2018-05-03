@@ -52,7 +52,7 @@ app.get("/phrases", function (req, res) {
     }
     getPhrases(text).then(retPhrases => {
         phrases = retPhrases;
-        res.send(phrases);
+        res.send({"phrases" : phrases});
     });
 });
 
