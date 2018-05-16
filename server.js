@@ -2,7 +2,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 
 const cogserv = require('cogserv-text-analytics'); //Text Analytics
-process.env.COGSERV_TEXT_KEY = '996f7b4c6b924383b3fe595509a7fec1';
+process.env.COGSERV_TEXT_KEY = '8ca2bdd32e074e00ae381100115a49c5';
 const {keyPhrases, sentiment} = require('./text-analytics')
 
 const wiki = require('wikijs').default; //Wikipedia API
@@ -11,7 +11,8 @@ var app = express();
 app.use(bodyParser.json()); // support json encoded bodies
 app.use(bodyParser.urlencoded({extended: true})); // support encoded bodies
 // app.use(fileUpload());
-
+var object = {}
+object.get
 var port = process.env.PORT || 8010;
 app.listen(port);
 
