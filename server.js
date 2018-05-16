@@ -70,12 +70,12 @@ app.get("/phrases", function (req, res) {
 app.post("/wiki", function (req, res) {
     res.setHeader('Content-Type', 'application/json');
     let out = {};
-    console.log(req.headers[1].lang);
-    console.log(req.headers[0].terms);
-    var string = req.headers[0].terms;
+    console.log(req.headers.lang);
+    console.log(req.headers.terms);
+    var string = req.headers.terms;
     var phrases = string.split(',');
     console.log(phrases);
-    let userLang = req.headers[1].lang;
+    let userLang = req.headers.lang;
     if (phrases.length == 0) {
         res.send(out);
     }
