@@ -46,6 +46,11 @@ app.listen(port);
 //     });
 // });
 
+app.get("", function (req, res) {
+    res.setHeader('Content-Type', 'application/json');
+    res.send({"welcome": "!"});
+});
+
 app.get("/phrases", function (req, res) {
     //console.log(req);
     res.setHeader('Content-Type', 'application/json');
@@ -66,7 +71,8 @@ app.post("/wiki", function (req, res) {
     res.setHeader('Content-Type', 'application/json');
     let out = {};
     console.log(req.headers.lang);
-    let phrases = Object.keys(req.body);
+    console.log(req.headers.terms);
+    let phrases = Object.keys(req.headers.terms);
     console.log(phrases);
     let userLang = req.headers.lang;
     if (phrases.length == 0) {
