@@ -1,12 +1,10 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 
-const cogserv = require('cogserv-text-analytics'); //Text Analytics
-process.env.COGSERV_TEXT_KEY = '8ca2bdd32e074e00ae381100115a49c5';
-const {keyPhrases, sentiment} = require('./text-analytics')
-
 const TextRazor = require('textrazor')
-const textRazor = new TextRazor('1f5b8b282f0efbf7da5f6c543a16a45d58d3ec090ba069c92ffc9587')
+//nitai - 1f5b8b282f0efbf7da5f6c543a16a45d58d3ec090ba069c92ffc9587
+//dyny - 60d32def4796a0ba0bc0d0f82d0414f9dcf71f9b681c8d7b2fbee5a9
+const textRazor = new TextRazor('60d32def4796a0ba0bc0d0f82d0414f9dcf71f9b681c8d7b2fbee5a9')
 
 
 const wiki = require('wikijs').default; //Wikipedia API
@@ -26,9 +24,8 @@ app.get("", function(req, res){
 app.get("/phrases", function(req, res){
     res.setHeader('Content-Type', 'application/json');
     let textRazorOptions = {extractors: 'entities, topics, phrases'}
-    let text = req.headers.text;
+    let text = req.headers.text
     let userLang = req.headers.lang.toLowerCase();
-
     if(text.length == 0){
         res.send({});
     }
@@ -49,17 +46,18 @@ app.get("/phrases", function(req, res){
 
 async function phrasesLoop(phrases, userLang){
     var ret = await new Promise(resolve =>{
+        let lang = userLang;
         var counter = 0;
         let finalPhrases = [];
         let obj = {};
         phrases.forEach(function(termObj, i){
-            if(!finalPhrases.includes(termObj.entityId) && termObj.confidenceScore > 1.2){
-                finalPhrases.push(termObj.entityId);
+            if(!finalPhrases.includes(termObj.entityEnglishId) && termObj.confidenceScore > 1.2){
+                finalPhrases.push(termObj.entityEnglishId);
             }
         });
         finalPhrases.forEach(function(term, j){
-            wikiTerm(term, userLang).then(wiki =>{
-                obj[term] = wiki;
+            wikiTerm(term, lang).then(wiki =>{
+                obj[wiki.title] = wiki;
                 counter++;
                 if(counter == finalPhrases.length){
                     resolve(obj);
