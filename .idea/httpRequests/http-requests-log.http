@@ -12,6 +12,14 @@ Cache-Control:no-cache
 text:and that I can't send it to you. This has been called the "double-spend" problem by cryptographers for a long time
 lang:EN
 
+###
+
+GET http://localhost:8010/phrases
+Accept:*/*
+Cache-Control:no-cache
+text:and that I can't send it to you. This has been called the "double-spend" problem by cryptographers for a long time
+lang:EN
+
 <> 2018-05-20T112029.200.json
 
 ###

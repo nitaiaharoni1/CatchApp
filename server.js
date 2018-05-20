@@ -7,7 +7,6 @@ const {keyPhrases, sentiment} = require('./text-analytics')
 
 const TextRazor = require('textrazor')
 const textRazor = new TextRazor('1f5b8b282f0efbf7da5f6c543a16a45d58d3ec090ba069c92ffc9587')
-const textRazorOptions = {extractors: 'entities, topics, phrases'}
 
 
 const wiki = require('wikijs').default; //Wikipedia API
@@ -26,8 +25,10 @@ app.get("", function(req, res){
 
 app.get("/phrases", function(req, res){
     res.setHeader('Content-Type', 'application/json');
+    let textRazorOptions = {extractors: 'entities, topics, phrases'}
     let text = req.headers.text;
     let userLang = req.headers.lang.toLowerCase();
+
     if(text.length == 0){
         res.send({});
     }
@@ -52,7 +53,7 @@ async function phrasesLoop(phrases, userLang){
         let finalPhrases = [];
         let obj = {};
         phrases.forEach(function(termObj, i){
-            if(!finalPhrases.includes(termObj.entityId)){
+            if(!finalPhrases.includes(termObj.entityId) && termObj.confidenceScore > 1.2){
                 finalPhrases.push(termObj.entityId);
             }
         });
