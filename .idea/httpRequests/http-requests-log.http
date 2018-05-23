@@ -1,3 +1,12 @@
+GET http://localhost:8010/phrases
+Accept: */*
+Cache-Control: no-cache
+text: internet
+lang: en
+Accept-Language: he
+
+###
+
 GET http://localhost:8010/input
 Accept:*/*
 Cache-Control:no-cache
@@ -246,15 +255,6 @@ lang:en
 Accept-Language:he
 
 <> 2018-05-23T103038.200.json
-
-###
-
-GET http://localhost:8010/input
-Accept:*/*
-Cache-Control:no-cache
-text:Ethiopia and sudan
-lang:en
-Accept-Language:he
 
 ###
 

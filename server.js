@@ -30,7 +30,7 @@ app.get("/phrases", function(req, res){
         res.send({});
     }
     textRazor.exec(text, textRazorOptions).then(terms =>{
-        let phrases = terms;
+        let phrases = terms.response.entities;
         if(phrases != undefined){
             phrasesLoop(phrases, userLang).then(obj =>{
                 res.send(obj);
