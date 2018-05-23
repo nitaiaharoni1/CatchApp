@@ -33,7 +33,7 @@ app.get("/phrases", function(req, res){
             phrasesLoop(phrases, userLang).then(obj =>{
                 res.send(obj);
             }).catch(err => console.error(err));
-        }else{
+        } else{
             res.send({});
         }
     }).catch(err =>{
@@ -92,55 +92,60 @@ async function wikiTerm(term, userLang){
     return retWikiTerms;
 }
 
-async function langPage(page, userLang) {
-    var langObj = await new Promise(resolve => {
+async function langPage(page, userLang){
+    var langObj = await new Promise(resolve =>{
         var obj = {};
-        page.langlinks().then(langsArray => {
-            if (langsArray.length < 3) {    //does not return object with less then 5 translations
+        page.langlinks().then(langsArray =>{
+            if(langsArray.length < 3){    //does not return object with less then 5 translations
                 resolve(obj);
             }
 
             langTitle = page.raw.title;
             langCountry = "en";
-            for (var i = 0; i < langsArray.length; i++) {
-                if (langsArray[i].lang == userLang) {
+            for(var i = 0; i < langsArray.length; i++){
+                if(langsArray[i].lang == userLang){
                     langTitle = langsArray[i].title;
                     langCountry = userLang;
                     break;
                 }
             }
-            wiki({apiUrl: 'http://' + langCountry + '.wikipedia.org/w/api.php'}).page(langTitle).then(page => {
+            wiki({apiUrl: 'http://' + langCountry + '.wikipedia.org/w/api.php'}).page(langTitle).then(page =>{
                 obj.title = langTitle;
                 obj.englishTitle = langTitle;
                 obj.url = page.raw.fullurl;
-                page.summary().then(summary => {
+                page.summary().then(summary =>{
                     summary = summary.split(/[.;]/);
 
-                    obj.summary = summary[0] + ". " +summary[1];
-                    if (obj.image != undefined) {
+                    obj.summary = summary[0] + ". " + summary[1];
+                    if(obj.image != undefined){
                         resolve(obj);
                     }
-                }).catch(err => {
+                }).catch(err =>{
                     obj.summary = "";
-                    if (obj.image != undefined) {
+                    if(obj.image != undefined){
                         resolve(obj);
                     }
                 });
-                page.mainImage().then(mainImage => {
-                    obj.image = mainImage;
-                    if (obj.summary != undefined) {
+                page.images().then(images =>{
+                    for(var i = 0; i < images.length; i++){
+                        if(images[i].endsWith(".jpg") || images[i].endsWith(".png")){
+                            obj.image = images[i];
+                            break;
+                        }
+                    }
+                    if(obj.summary != undefined){
                         resolve(obj);
                     }
-                }).catch(err => {
+                }).catch(err =>{
                     obj.image = "";
-                    if (obj.summary != undefined) {
+                    if(obj.summary != undefined){
                         resolve(obj);
                     }
                 });
-            }).catch(err => {
+            }).catch(err =>{
                 console.error(err);
             });
-        }).catch(err => {
+        }).catch(err =>{
             console.error(err);
         });
     });
