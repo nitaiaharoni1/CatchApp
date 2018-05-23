@@ -193,7 +193,7 @@ async function objBuild(langCountry, langTitle, englishTitle){
                 obj.summary = "";
                 for(var i = 0; i < summary.length; i++){
                     if(obj.summary.length < 350){
-                        obj.summary += summary[i] + ".";
+                        obj.summary += summary[i] + ".\n";
                     }
                 }
                 summary = obj.summary;
