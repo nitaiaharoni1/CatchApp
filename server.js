@@ -89,7 +89,7 @@ async function phrasesLoopInput(phrases, userLang){
         var counter = 0;
         let obj = {};
         for(var i in phrases){
-            wikiTerm(phrases[i], lang).then(wiki =>{
+            wikiInputTerm(phrases[i], lang).then(wiki =>{
                 if(wiki != undefined){
                     obj[wiki.englishTitle] = wiki;
                     counter++;
@@ -111,6 +111,32 @@ async function phrasesLoopInput(phrases, userLang){
 }
 
 async function wikiTerm(term, userLang){
+    var retWikiTerms = await new Promise(resolve =>{
+        let langCountry;
+        let obj = {};
+        let counter = 0;
+        wiki().page(term).then(page =>{
+            findLang(page, userLang).then(arr =>{ //country,langTitle,englishTitle
+                objBuild(arr[0], arr[1], arr[2]).then(obj =>{
+                    resolve(obj);
+                }).catch(err =>{
+                    console.error(err);
+                    resolve();
+                });
+            }).catch(err =>{
+                console.error(err);
+                resolve();
+
+            });
+        }).catch(err =>{
+            console.error(err);
+            resolve();
+        });
+    });
+    return retWikiTerms;
+}
+
+async function wikiInputTerm(term, userLang){
     var retWikiTerms = await new Promise(resolve =>{
         let langCountry;
         let obj = {};
@@ -204,7 +230,7 @@ async function objBuild(langCountry, langTitle, englishTitle){
                 obj.summary = "";
                 for(var i = 0; i < summary.length; i++){
                     if(obj.summary.length < 350){
-                        obj.summary += summary[i] + ". ";
+                        obj.summary += summary[i] + ".";
                     }
                 }
                 summary = obj.summary;
@@ -217,19 +243,22 @@ async function objBuild(langCountry, langTitle, englishTitle){
                 resolve(obj)
             });
             page.images().then(images =>{
-                for(var i = 0; i < images.length; i++){
-                    if(images[i].endsWith(".jpg") || images[i].endsWith(".png")){
-                        obj.image = images[i];
-                        break;
+                obj.image = "";
+                if(images != undefined){
+                    for(var i = 0; i < images.length; i++){
+                        if(images[i].endsWith(".jpg") || images[i].endsWith(".png")){
+                            obj.image = images[i];
+                            break;
+                        }
                     }
                 }
-                if(obj.summary != undefined && !obj.summary.endsWith("may refer to:")){
+                if(obj.summary != undefined){
                     resolve(obj);
-                } else{
-                    resolve();
                 }
             }).catch(err =>{
-                resolve();
+                if(obj.summary != undefined){
+                    resolve(obj);
+                }
             });
         }).catch(err =>{
             resolve();
