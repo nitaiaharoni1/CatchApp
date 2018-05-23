@@ -115,34 +115,42 @@ async function wikiTerm(term, userLang){
         let langCountry;
         let obj = {};
         let counter = 0;
-        wiki().page(term).then(page =>{
-            page.html().then(html =>{
-                if(html.indexOf("may refer to") != -1){
-                    page.links().then(links =>{
-                        let link = links[0];
-                        let linkArr = [];
-                        for(var i in links){
-                            if(links[i].toLowerCase().startsWith(term.toLowerCase())){
-                                linkArr.push(links[i]);
-                            }
-                            if(linkArr.length>1){
-                                var maxLength = 0;
-                                var maxJ;
-                                for(var j in linkArr){
-                                    if(linkArr[j].length>maxLength){
-                                        maxLength = linkArr[j].length;
-                                        maxJ = j;
-                                    }
+        wiki().search(term, 1).then(searched =>{
+            if(searched.results.length == 0){
+                resolve(obj);
+            }
+            wiki().page("tel aviv").then(page =>{
+                page.html().then(html =>{
+                    if(html.indexOf("may refer to") != -1){
+                        page.links().then(links =>{
+                            let link = links[0];
+                            let linkArr = [];
+                            for(var i in links){
+                                if(links[i].toLowerCase().startsWith(term.toLowerCase())){
+                                    linkArr.push(links[i]);
                                 }
-                                link = linkArr[maxJ];
-                            }else if (linkArr.length == 1){
-                                link = linkArr[0];
+                                if(linkArr.length > 1){
+                                    var maxLength = 0;
+                                    var maxJ;
+                                    for(var j in linkArr){
+                                        if(linkArr[j].length > maxLength){
+                                            maxLength = linkArr[j].length;
+                                            maxJ = j;
+                                        }
+                                    }
+                                    link = linkArr[maxJ];
+                                } else if(linkArr.length == 1){
+                                    link = linkArr[0];
+                                }
                             }
-                        }
-                        wiki().page(link).then(page =>{
-                            findLang(page, userLang).then(arr =>{ //country,langTitle,englishTitle
-                                objBuild(arr[0], arr[1], arr[2]).then(obj =>{
-                                    resolve(obj);
+                            wiki().page(link).then(page =>{
+                                findLang(page, userLang).then(arr =>{ //country,langTitle,englishTitle
+                                    objBuild(arr[0], arr[1], arr[2]).then(obj =>{
+                                        resolve(obj);
+                                    }).catch(err =>{
+                                        console.error(err);
+                                        resolve();
+                                    });
                                 }).catch(err =>{
                                     console.error(err);
                                     resolve();
@@ -155,27 +163,30 @@ async function wikiTerm(term, userLang){
                             console.error(err);
                             resolve();
                         });
-                    }).catch(err =>{
-                        console.error(err);
-                        resolve();
-                    });
-                } else{
-                    findLang(page, userLang).then(arr =>{ //country,langTitle,englishTitle
-                        objBuild(arr[0], arr[1], arr[2]).then(obj =>{
-                            resolve(obj);
+                    } else{
+                        findLang(page, userLang).then(arr =>{ //country,langTitle,englishTitle
+                            objBuild(arr[0], arr[1], arr[2]).then(obj =>{
+                                resolve(obj);
+                            }).catch(err =>{
+                                console.error(err);
+                                resolve();
+                            });
                         }).catch(err =>{
                             console.error(err);
                             resolve();
                         });
-                    }).catch(err =>{
-                        console.error(err);
-                        resolve();
-                    });
-                }
+                    }
+                }).catch(err =>{
+                    console.error(err);
+                    resolve();
+                });
             }).catch(err =>{
                 console.error(err);
                 resolve();
             });
+        }).catch(err =>{
+            console.error(err);
+            resolve();
         });
     });
     return retWikiTerms;
@@ -193,15 +204,13 @@ async function objBuild(langCountry, langTitle, englishTitle){
                 obj.summary = "";
                 for(var i = 0; i < summary.length; i++){
                     if(obj.summary.length < 350){
-                        obj.summary += summary[i] + ".\n";
+                        obj.summary += summary[i] + ". ";
                     }
                 }
                 summary = obj.summary;
                 obj.summary = summary.replace(/(\[\d*\])/gm, '');
                 if(obj.image != undefined){
                     resolve(obj);
-                } else if(obj.summery.endsWith("may refer to:"){
-                    resolve({});
                 }
             }).catch(err =>{
                 console.log(err);
