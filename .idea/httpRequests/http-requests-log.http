@@ -5,14 +5,25 @@ text:You know, for the past few decades, we've had the internet of information. 
 lang:he
 Accept-Language:he
 
-<> 2018-05-21T015401.200.json
+<> 2018-05-23T093404.200.json
 
 ###
 
 GET http://localhost:8010/phrases
 Accept:*/*
 Cache-Control:no-cache
-text:אתה יודע, במשך כמה עשורים, היה לנו את האינטרנט של מידע. וכאשר אני שולח לך דוא"ל או קובץ
+text:You know, for the past few decades, we've had the internet of information. And when I send you an email or a PowerPoint file or something, I'm actually not sending you the original, I'm sending you a copy. And that's great. This is democratized information. But when it comes to assets -- things like money, financial assets like stocks and bonds, loyalty points, intellectual property, music, art, a vote, carbon credit and other assets -- sending you a copy is a really bad idea. If I send you 100 dollars, it's really important that I don't still have the money --
+lang:he
+Accept-Language:he
+
+<> 2018-05-23T093210.200.json
+
+###
+
+GET http://localhost:8010/phrases
+Accept:*/*
+Cache-Control:no-cache
+text:You know, for the past few decades, we've had the internet of information. And when I send you an email or a PowerPoint file or something, I'm actually not sending you the original, I'm sending you a copy. And that's great. This is democratized information. But when it comes to assets -- things like money, financial assets like stocks and bonds, loyalty points, intellectual property, music, art, a vote, carbon credit and other assets -- sending you a copy is a really bad idea. If I send you 100 dollars, it's really important that I don't still have the money --
 lang:he
 Accept-Language:he
 
@@ -21,7 +32,18 @@ Accept-Language:he
 GET http://localhost:8010/phrases
 Accept:*/*
 Cache-Control:no-cache
-text:אתה יודע, במשך כמה עשורים, היה לנו את האינטרנט של מידע. וכאשר אני שולח לך דוא"ל או קובץ
+text:You know, for the past few decades, we've had the internet of information. And when I send you an email or a PowerPoint file or something, I'm actually not sending you the original, I'm sending you a copy. And that's great. This is democratized information. But when it comes to assets -- things like money, financial assets like stocks and bonds, loyalty points, intellectual property, music, art, a vote, carbon credit and other assets -- sending you a copy is a really bad idea. If I send you 100 dollars, it's really important that I don't still have the money --
+lang:he
+Accept-Language:he
+
+<> 2018-05-23T092628.200.json
+
+###
+
+GET http://localhost:8010/phrases
+Accept:*/*
+Cache-Control:no-cache
+text:You know, for the past few decades, we've had the internet of information. And when I send you an email or a PowerPoint file or something, I'm actually not sending you the original, I'm sending you a copy. And that's great. This is democratized information. But when it comes to assets -- things like money, financial assets like stocks and bonds, loyalty points, intellectual property, music, art, a vote, carbon credit and other assets -- sending you a copy is a really bad idea. If I send you 100 dollars, it's really important that I don't still have the money --
 lang:he
 Accept-Language:he
 
@@ -30,7 +52,7 @@ Accept-Language:he
 GET http://localhost:8010/phrases
 Accept:*/*
 Cache-Control:no-cache
-text:אתה יודע, במשך כמה עשורים, היה לנו את האינטרנט של מידע. וכאשר אני שולח לך דוא"ל או קובץ
+text:You know, for the past few decades, we've had the internet of information. And when I send you an email or a PowerPoint file or something, I'm actually not sending you the original, I'm sending you a copy. And that's great. This is democratized information. But when it comes to assets -- things like money, financial assets like stocks and bonds, loyalty points, intellectual property, music, art, a vote, carbon credit and other assets -- sending you a copy is a really bad idea. If I send you 100 dollars, it's really important that I don't still have the money --
 lang:he
 Accept-Language:he
 
@@ -39,410 +61,406 @@ Accept-Language:he
 GET http://localhost:8010/phrases
 Accept:*/*
 Cache-Control:no-cache
-text:אתה יודע, במשך כמה עשורים, היה לנו את האינטרנט של מידע. וכאשר אני שולח לך דוא"ל או קובץ
+text:You know, for the past few decades, we've had the internet of information. And when I send you an email or a PowerPoint file or something, I'm actually not sending you the original, I'm sending you a copy. And that's great. This is democratized information. But when it comes to assets -- things like money, financial assets like stocks and bonds, loyalty points, intellectual property, music, art, a vote, carbon credit and other assets -- sending you a copy is a really bad idea. If I send you 100 dollars, it's really important that I don't still have the money --
 lang:he
+Accept-Language:he
 
 ###
 
 GET http://localhost:8010/phrases
 Accept:*/*
 Cache-Control:no-cache
-text:אתה יודע, במשך כמה עשורים, היה לנו את האינטרנט של מידע. וכאשר אני שולח לך דוא"ל או קובץ
+text:You know, for the past few decades, we've had the internet of information. And when I send you an email or a PowerPoint file or something, I'm actually not sending you the original, I'm sending you a copy. And that's great. This is democratized information. But when it comes to assets -- things like money, financial assets like stocks and bonds, loyalty points, intellectual property, music, art, a vote, carbon credit and other assets -- sending you a copy is a really bad idea. If I send you 100 dollars, it's really important that I don't still have the money --
 lang:he
+Accept-Language:he
 
 ###
 
 GET http://localhost:8010/phrases
 Accept:*/*
 Cache-Control:no-cache
-text:אתה יודע, במשך כמה עשורים, היה לנו את האינטרנט של מידע. וכאשר אני שולח לך דוא"ל או קובץ
+text:You know, for the past few decades, we've had the internet of information. And when I send you an email or a PowerPoint file or something, I'm actually not sending you the original, I'm sending you a copy. And that's great. This is democratized information. But when it comes to assets -- things like money, financial assets like stocks and bonds, loyalty points, intellectual property, music, art, a vote, carbon credit and other assets -- sending you a copy is a really bad idea. If I send you 100 dollars, it's really important that I don't still have the money --
 lang:he
-
-<> 2018-05-21T012652.500.html
+Accept-Language:he
 
 ###
 
 GET http://localhost:8010/phrases
 Accept:*/*
 Cache-Control:no-cache
-text:אתה יודע, במשך כמה עשורים, היה לנו את האינטרנט של מידע. וכאשר אני שולח לך דוא"ל או קובץ
+text:You know, for the past few decades, we've had the internet of information. And when I send you an email or a PowerPoint file or something, I'm actually not sending you the original, I'm sending you a copy. And that's great. This is democratized information. But when it comes to assets -- things like money, financial assets like stocks and bonds, loyalty points, intellectual property, music, art, a vote, carbon credit and other assets -- sending you a copy is a really bad idea. If I send you 100 dollars, it's really important that I don't still have the money --
 lang:he
-
-<> 2018-05-21T011729.500.html
+Accept-Language:he
 
 ###
 
 GET http://localhost:8010/phrases
 Accept:*/*
 Cache-Control:no-cache
-text:אתה יודע, במשך כמה עשורים, היה לנו את האינטרנט של מידע. וכאשר אני שולח לך דוא"ל או קובץ
+text:You know, for the past few decades, we've had the internet of information. And when I send you an email or a PowerPoint file or something, I'm actually not sending you the original, I'm sending you a copy. And that's great. This is democratized information. But when it comes to assets -- things like money, financial assets like stocks and bonds, loyalty points, intellectual property, music, art, a vote, carbon credit and other assets -- sending you a copy is a really bad idea. If I send you 100 dollars, it's really important that I don't still have the money --
 lang:he
-
-<> 2018-05-21T011711.500.html
+Accept-Language:he
 
 ###
 
 GET http://localhost:8010/phrases
 Accept:*/*
 Cache-Control:no-cache
-text:אתה יודע, במשך כמה עשורים, היה לנו את האינטרנט של מידע. וכאשר אני שולח לך דוא"ל או קובץ
+text:You know, for the past few decades, we've had the internet of information. And when I send you an email or a PowerPoint file or something, I'm actually not sending you the original, I'm sending you a copy. And that's great. This is democratized information. But when it comes to assets -- things like money, financial assets like stocks and bonds, loyalty points, intellectual property, music, art, a vote, carbon credit and other assets -- sending you a copy is a really bad idea. If I send you 100 dollars, it's really important that I don't still have the money --
 lang:he
-
-<> 2018-05-21T011607.500.html
+Accept-Language:he
 
 ###
 
 GET http://localhost:8010/phrases
 Accept:*/*
 Cache-Control:no-cache
-text:TextRazor can automatically detect 142 languages using the contents of your text. The detected language is used for the appropriate processing logic, and returned to you in the TextRazor response. For short text (Tweets for example), there may not be enough context to accurately determine the language. If this is likely to be a problem you can pass "languageOverride" with the request to specify a processing language and skip the automatic detection stage
+text:You know, for the past few decades, we've had the internet of information. And when I send you an email or a PowerPoint file or something, I'm actually not sending you the original, I'm sending you a copy. And that's great. This is democratized information. But when it comes to assets -- things like money, financial assets like stocks and bonds, loyalty points, intellectual property, music, art, a vote, carbon credit and other assets -- sending you a copy is a really bad idea. If I send you 100 dollars, it's really important that I don't still have the money --
 lang:he
-
-<> 2018-05-21T010211.200.json
-
-###
-
-GET http://localhost:8010/phrases
-Accept:*/*
-Cache-Control:no-cache
-text:אתה יודע, במשך כמה עשורים, היה לנו את האינטרנט של מידע. וכאשר אני שולח לך דוא"ל או קובץ PowerPoint או משהו, אני בעצם לא שולח לך את המקור, אני שולח לך עותק. וזה נהדר. זהו מידע דמוקרטי. אבל כשמדובר בנכסים - דברים כמו כסף, נכסים פיננסיים כמו מניות ואג"ח, נקודות נאמנות, קניין רוחני, מוסיקה, אמנות, הצבעה, אשראי פחמן ונכסים אחרים - לשלוח לך עותק הוא רעיון רע מאוד. אם אני שולח לך 100 דולר, זה באמת חשוב כי עדיין אין לי את הכסף -
-lang:es
+Accept-Language:he
 
 ###
 
 GET http://localhost:8010/phrases
 Accept:*/*
 Cache-Control:no-cache
-text:אתה יודע, במשך כמה עשורים, היה לנו את האינטרנט של מידע. וכאשר אני שולח לך דוא"ל או קובץ PowerPoint או משהו, אני בעצם לא שולח לך את המקור, אני שולח לך עותק. וזה נהדר. זהו מידע דמוקרטי. אבל כשמדובר בנכסים - דברים כמו כסף, נכסים פיננסיים כמו מניות ואג"ח, נקודות נאמנות, קניין רוחני, מוסיקה, אמנות, הצבעה, אשראי פחמן ונכסים אחרים - לשלוח לך עותק הוא רעיון רע מאוד. אם אני שולח לך 100 דולר, זה באמת חשוב כי עדיין אין לי את הכסף -
-lang:es
+text:You know, for the past few decades, we've had the internet of information. And when I send you an email or a PowerPoint file or something, I'm actually not sending you the original, I'm sending you a copy. And that's great. This is democratized information. But when it comes to assets -- things like money, financial assets like stocks and bonds, loyalty points, intellectual property, music, art, a vote, carbon credit and other assets -- sending you a copy is a really bad idea. If I send you 100 dollars, it's really important that I don't still have the money --
+lang:he
+Accept-Language:he
 
 ###
 
 GET http://localhost:8010/phrases
 Accept:*/*
 Cache-Control:no-cache
-text:Ya sabes, durante las últimas décadas, hemos tenido acceso a Internet de información. Y cuando le envío un correo electrónico o un archivo de PowerPoint o algo así, en realidad no le envío el original, le estoy enviando una copia. Y eso es genial. Esta es información democratizada. Pero cuando se trata de activos, cosas como dinero, activos financieros como acciones y bonos, puntos de lealtad, propiedad intelectual, música, arte, voto, créditos de carbono y otros activos, enviarle una copia es una muy mala idea. Si le envío 100 dólares, es realmente importante que todavía no tenga el
-lang:es
+text:You know, for the past few decades, we've had the internet of information. And when I send you an email or a PowerPoint file or something, I'm actually not sending you the original, I'm sending you a copy. And that's great. This is democratized information. But when it comes to assets -- things like money, financial assets like stocks and bonds, loyalty points, intellectual property, music, art, a vote, carbon credit and other assets -- sending you a copy is a really bad idea. If I send you 100 dollars, it's really important that I don't still have the money --
+lang:he
+Accept-Language:he
 
 ###
 
 GET http://localhost:8010/phrases
 Accept:*/*
 Cache-Control:no-cache
-text:Ya sabes, durante las últimas décadas, hemos tenido acceso a Internet de información. Y cuando le envío un correo electrónico o un archivo de PowerPoint o algo así, en realidad no le envío el original, le estoy enviando una copia. Y eso es genial. Esta es información democratizada. Pero cuando se trata de activos, cosas como dinero, activos financieros como acciones y bonos, puntos de lealtad, propiedad intelectual, música, arte, voto, créditos de carbono y otros activos, enviarle una copia es una muy mala idea. Si le envío 100 dólares, es realmente importante que todavía no tenga el
-lang:EN
+text:You know, for the past few decades, we've had the internet of information. And when I send you an email or a PowerPoint file or something, I'm actually not sending you the original, I'm sending you a copy. And that's great. This is democratized information. But when it comes to assets -- things like money, financial assets like stocks and bonds, loyalty points, intellectual property, music, art, a vote, carbon credit and other assets -- sending you a copy is a really bad idea. If I send you 100 dollars, it's really important that I don't still have the money --
+lang:he
+Accept-Language:he
 
 ###
 
 GET http://localhost:8010/phrases
 Accept:*/*
 Cache-Control:no-cache
-text:Ya sabes, durante las últimas décadas, hemos tenido acceso a Internet de información. Y cuando le envío un correo electrónico o un archivo de PowerPoint o algo así, en realidad no le envío el original, le estoy enviando una copia. Y eso es genial. Esta es información democratizada. Pero cuando se trata de activos, cosas como dinero, activos financieros como acciones y bonos, puntos de lealtad, propiedad intelectual, música, arte, voto, créditos de carbono y otros activos, enviarle una copia es una muy mala idea. Si le envío 100 dólares, es realmente importante que todavía no tenga el
-lang:EN
+text:You know, for the past few decades, we've had the internet of information. And when I send you an email or a PowerPoint file or something, I'm actually not sending you the original, I'm sending you a copy. And that's great. This is democratized information. But when it comes to assets -- things like money, financial assets like stocks and bonds, loyalty points, intellectual property, music, art, a vote, carbon credit and other assets -- sending you a copy is a really bad idea. If I send you 100 dollars, it's really important that I don't still have the money --
+lang:he
+Accept-Language:he
 
 ###
 
 GET http://localhost:8010/phrases
 Accept:*/*
 Cache-Control:no-cache
-text:Ya sabes, durante las últimas décadas, hemos tenido acceso a Internet de información. Y cuando le envío un correo electrónico o un archivo de PowerPoint o algo así, en realidad no le envío el original, le estoy enviando una copia. Y eso es genial. Esta es información democratizada. Pero cuando se trata de activos, cosas como dinero, activos financieros como acciones y bonos, puntos de lealtad, propiedad intelectual, música, arte, voto, créditos de carbono y otros activos, enviarle una copia es una muy mala idea. Si le envío 100 dólares, es realmente importante que todavía no tenga el
-lang:EN
-
-<> 2018-05-21T125027.200.json
-
-###
-
-GET http://localhost:8010/phrases
-Accept:*/*
-Cache-Control:no-cache
-text:Ya sabes, durante las últimas décadas, hemos tenido acceso a Internet de información. Y cuando le envío un correo electrónico o un archivo de PowerPoint o algo así, en realidad no le envío el original, le estoy enviando una copia. Y eso es genial. Esta es información democratizada. Pero cuando se trata de activos, cosas como dinero, activos financieros como acciones y bonos, puntos de lealtad, propiedad intelectual, música, arte, voto, créditos de carbono y otros activos, enviarle una copia es una muy mala idea. Si le envío 100 dólares, es realmente importante que todavía no tenga el
-lang:EN
+text:You know, for the past few decades, we've had the internet of information. And when I send you an email or a PowerPoint file or something, I'm actually not sending you the original, I'm sending you a copy. And that's great. This is democratized information. But when it comes to assets -- things like money, financial assets like stocks and bonds, loyalty points, intellectual property, music, art, a vote, carbon credit and other assets -- sending you a copy is a really bad idea. If I send you 100 dollars, it's really important that I don't still have the money --
+lang:he
+Accept-Language:he
 
 ###
 
 GET http://localhost:8010/phrases
 Accept:*/*
 Cache-Control:no-cache
-text:Ya sabes, durante las últimas décadas, hemos tenido acceso a Internet de información. Y cuando le envío un correo electrónico o un archivo de PowerPoint o algo así, en realidad no le envío el original, le estoy enviando una copia. Y eso es genial. Esta es información democratizada. Pero cuando se trata de activos, cosas como dinero, activos financieros como acciones y bonos, puntos de lealtad, propiedad intelectual, música, arte, voto, créditos de carbono y otros activos, enviarle una copia es una muy mala idea. Si le envío 100 dólares, es realmente importante que todavía no tenga el
-lang:EN
-
-<> 2018-05-21T122303.200.json
-
-###
-
-GET http://localhost:8010/phrases
-Accept:*/*
-Cache-Control:no-cache
-text:Ya sabes, durante las últimas décadas, hemos tenido acceso a Internet de información. Y cuando le envío un correo electrónico o un archivo de PowerPoint o algo así, en realidad no le envío el original, le estoy enviando una copia. Y eso es genial. Esta es información democratizada. Pero cuando se trata de activos, cosas como dinero, activos financieros como acciones y bonos, puntos de lealtad, propiedad intelectual, música, arte, voto, créditos de carbono y otros activos, enviarle una copia es una muy mala idea. Si le envío 100 dólares, es realmente importante que todavía no tenga el
-lang:EN
+text:You know, for the past few decades, we've had the internet of information. And when I send you an email or a PowerPoint file or something, I'm actually not sending you the original, I'm sending you a copy. And that's great. This is democratized information. But when it comes to assets -- things like money, financial assets like stocks and bonds, loyalty points, intellectual property, music, art, a vote, carbon credit and other assets -- sending you a copy is a really bad idea. If I send you 100 dollars, it's really important that I don't still have the money --
+lang:he
+Accept-Language:he
 
 ###
 
 GET http://localhost:8010/phrases
 Accept:*/*
 Cache-Control:no-cache
-text:Ya sabes, durante las últimas décadas, hemos tenido acceso a Internet de información. Y cuando le envío un correo electrónico o un archivo de PowerPoint o algo así, en realidad no le envío el original, le estoy enviando una copia. Y eso es genial. Esta es información democratizada. Pero cuando se trata de activos, cosas como dinero, activos financieros como acciones y bonos, puntos de lealtad, propiedad intelectual, música, arte, voto, créditos de carbono y otros activos, enviarle una copia es una muy mala idea. Si le envío 100 dólares, es realmente importante que todavía no tenga el
-lang:EN
+text:You know, for the past few decades, we've had the internet of information. And when I send you an email or a PowerPoint file or something, I'm actually not sending you the original, I'm sending you a copy. And that's great. This is democratized information. But when it comes to assets -- things like money, financial assets like stocks and bonds, loyalty points, intellectual property, music, art, a vote, carbon credit and other assets -- sending you a copy is a really bad idea. If I send you 100 dollars, it's really important that I don't still have the money --
+lang:he
+Accept-Language:he
+
+<> 2018-05-23T085758.200.json
 
 ###
 
 GET http://localhost:8010/phrases
 Accept:*/*
 Cache-Control:no-cache
-text:Ya sabes, durante las últimas décadas, hemos tenido acceso a Internet de información. Y cuando le envío un correo electrónico o un archivo de PowerPoint o algo así, en realidad no le envío el original, le estoy enviando una copia. Y eso es genial. Esta es información democratizada. Pero cuando se trata de activos, cosas como dinero, activos financieros como acciones y bonos, puntos de lealtad, propiedad intelectual, música, arte, voto, créditos de carbono y otros activos, enviarle una copia es una muy mala idea. Si le envío 100 dólares, es realmente importante que todavía no tenga el
-lang:EN
+text:You know, for the past few decades, we've had the internet of information. And when I send you an email or a PowerPoint file or something, I'm actually not sending you the original, I'm sending you a copy. And that's great. This is democratized information. But when it comes to assets -- things like money, financial assets like stocks and bonds, loyalty points, intellectual property, music, art, a vote, carbon credit and other assets -- sending you a copy is a really bad idea. If I send you 100 dollars, it's really important that I don't still have the money --
+lang:he
+Accept-Language:he
 
 ###
 
 GET http://localhost:8010/phrases
 Accept:*/*
 Cache-Control:no-cache
-text:Ya sabes, durante las últimas décadas, hemos tenido acceso a Internet de información. Y cuando le envío un correo electrónico o un archivo de PowerPoint o algo así, en realidad no le envío el original, le estoy enviando una copia. Y eso es genial. Esta es información democratizada. Pero cuando se trata de activos, cosas como dinero, activos financieros como acciones y bonos, puntos de lealtad, propiedad intelectual, música, arte, voto, créditos de carbono y otros activos, enviarle una copia es una muy mala idea. Si le envío 100 dólares, es realmente importante que todavía no tenga el
-lang:EN
+text:You know, for the past few decades, we've had the internet of information. And when I send you an email or a PowerPoint file or something, I'm actually not sending you the original, I'm sending you a copy. And that's great. This is democratized information. But when it comes to assets -- things like money, financial assets like stocks and bonds, loyalty points, intellectual property, music, art, a vote, carbon credit and other assets -- sending you a copy is a really bad idea. If I send you 100 dollars, it's really important that I don't still have the money --
+lang:he
+Accept-Language:he
 
 ###
 
 GET http://localhost:8010/phrases
 Accept:*/*
 Cache-Control:no-cache
-text:Ya sabes, durante las últimas décadas, hemos tenido acceso a Internet de información. Y cuando le envío un correo electrónico o un archivo de PowerPoint o algo así, en realidad no le envío el original, le estoy enviando una copia. Y eso es genial. Esta es información democratizada. Pero cuando se trata de activos, cosas como dinero, activos financieros como acciones y bonos, puntos de lealtad, propiedad intelectual, música, arte, voto, créditos de carbono y otros activos, enviarle una copia es una muy mala idea. Si le envío 100 dólares, es realmente importante que todavía no tenga el
-lang:EN
+text:You know, for the past few decades, we've had the internet of information. And when I send you an email or a PowerPoint file or something, I'm actually not sending you the original, I'm sending you a copy. And that's great. This is democratized information. But when it comes to assets -- things like money, financial assets like stocks and bonds, loyalty points, intellectual property, music, art, a vote, carbon credit and other assets -- sending you a copy is a really bad idea. If I send you 100 dollars, it's really important that I don't still have the money --
+lang:he
+Accept-Language:he
 
 ###
 
 GET http://localhost:8010/phrases
 Accept:*/*
 Cache-Control:no-cache
-text:Ya sabes, durante las últimas décadas, hemos tenido acceso a Internet de información. Y cuando le envío un correo electrónico o un archivo de PowerPoint o algo así, en realidad no le envío el original, le estoy enviando una copia. Y eso es genial. Esta es información democratizada. Pero cuando se trata de activos, cosas como dinero, activos financieros como acciones y bonos, puntos de lealtad, propiedad intelectual, música, arte, voto, créditos de carbono y otros activos, enviarle una copia es una muy mala idea. Si le envío 100 dólares, es realmente importante que todavía no tenga el
-lang:EN
+text:You know, for the past few decades, we've had the internet of information. And when I send you an email or a PowerPoint file or something, I'm actually not sending you the original, I'm sending you a copy. And that's great. This is democratized information. But when it comes to assets -- things like money, financial assets like stocks and bonds, loyalty points, intellectual property, music, art, a vote, carbon credit and other assets -- sending you a copy is a really bad idea. If I send you 100 dollars, it's really important that I don't still have the money --
+lang:he
+Accept-Language:he
 
 ###
 
 GET http://localhost:8010/phrases
 Accept:*/*
 Cache-Control:no-cache
-text:Ya sabes, durante las últimas décadas, hemos tenido acceso a Internet de información. Y cuando le envío un correo electrónico o un archivo de PowerPoint o algo así, en realidad no le envío el original, le estoy enviando una copia. Y eso es genial. Esta es información democratizada. Pero cuando se trata de activos, cosas como dinero, activos financieros como acciones y bonos, puntos de lealtad, propiedad intelectual, música, arte, voto, créditos de carbono y otros activos, enviarle una copia es una muy mala idea. Si le envío 100 dólares, es realmente importante que todavía no tenga el
-lang:EN
+text:You know, for the past few decades, we've had the internet of information. And when I send you an email or a PowerPoint file or something, I'm actually not sending you the original, I'm sending you a copy. And that's great. This is democratized information. But when it comes to assets -- things like money, financial assets like stocks and bonds, loyalty points, intellectual property, music, art, a vote, carbon credit and other assets -- sending you a copy is a really bad idea. If I send you 100 dollars, it's really important that I don't still have the money --
+lang:he
+Accept-Language:he
 
 ###
 
 GET http://localhost:8010/phrases
 Accept:*/*
 Cache-Control:no-cache
-text:Ya sabes, durante las últimas décadas, hemos tenido acceso a Internet de información. Y cuando le envío un correo electrónico o un archivo de PowerPoint o algo así, en realidad no le envío el original, le estoy enviando una copia. Y eso es genial. Esta es información democratizada. Pero cuando se trata de activos, cosas como dinero, activos financieros como acciones y bonos, puntos de lealtad, propiedad intelectual, música, arte, voto, créditos de carbono y otros activos, enviarle una copia es una muy mala idea. Si le envío 100 dólares, es realmente importante que todavía no tenga el
-lang:EN
+text:You know, for the past few decades, we've had the internet of information. And when I send you an email or a PowerPoint file or something, I'm actually not sending you the original, I'm sending you a copy. And that's great. This is democratized information. But when it comes to assets -- things like money, financial assets like stocks and bonds, loyalty points, intellectual property, music, art, a vote, carbon credit and other assets -- sending you a copy is a really bad idea. If I send you 100 dollars, it's really important that I don't still have the money --
+lang:he
+Accept-Language:he
 
 ###
 
 GET http://localhost:8010/phrases
 Accept:*/*
 Cache-Control:no-cache
-text:Ya sabes, durante las últimas décadas, hemos tenido acceso a Internet de información. Y cuando le envío un correo electrónico o un archivo de PowerPoint o algo así, en realidad no le envío el original, le estoy enviando una copia. Y eso es genial. Esta es información democratizada. Pero cuando se trata de activos, cosas como dinero, activos financieros como acciones y bonos, puntos de lealtad, propiedad intelectual, música, arte, voto, créditos de carbono y otros activos, enviarle una copia es una muy mala idea. Si le envío 100 dólares, es realmente importante que todavía no tenga el
-lang:EN
-
-<> 2018-05-21T121036.200.json
-
-###
-
-GET http://localhost:8010/phrases
-Accept:*/*
-Cache-Control:no-cache
-text:Ya sabes, durante las últimas décadas, hemos tenido acceso a Internet de información. Y cuando le envío un correo electrónico o un archivo de PowerPoint o algo así, en realidad no le envío el original, le estoy enviando una copia. Y eso es genial. Esta es información democratizada. Pero cuando se trata de activos, cosas como dinero, activos financieros como acciones y bonos, puntos de lealtad, propiedad intelectual, música, arte, voto, créditos de carbono y otros activos, enviarle una copia es una muy mala idea. Si le envío 100 dólares, es realmente importante que todavía no tenga el
-lang:EN
-
-<> 2018-05-20T113739.200.json
+text:You know, for the past few decades, we've had the internet of information. And when I send you an email or a PowerPoint file or something, I'm actually not sending you the original, I'm sending you a copy. And that's great. This is democratized information. But when it comes to assets -- things like money, financial assets like stocks and bonds, loyalty points, intellectual property, music, art, a vote, carbon credit and other assets -- sending you a copy is a really bad idea. If I send you 100 dollars, it's really important that I don't still have the money --
+lang:he
+Accept-Language:he
 
 ###
 
 GET http://localhost:8010/phrases
 Accept:*/*
 Cache-Control:no-cache
-text:Ya sabes, durante las últimas décadas, hemos tenido acceso a Internet de información. Y cuando le envío un correo electrónico o un archivo de PowerPoint o algo así, en realidad no le envío el original, le estoy enviando una copia. Y eso es genial. Esta es información democratizada. Pero cuando se trata de activos, cosas como dinero, activos financieros como acciones y bonos, puntos de lealtad, propiedad intelectual, música, arte, voto, créditos de carbono y otros activos, enviarle una copia es una muy mala idea. Si le envío 100 dólares, es realmente importante que todavía no tenga el
-lang:EN
+text:You know, for the past few decades, we've had the internet of information. And when I send you an email or a PowerPoint file or something, I'm actually not sending you the original, I'm sending you a copy. And that's great. This is democratized information. But when it comes to assets -- things like money, financial assets like stocks and bonds, loyalty points, intellectual property, music, art, a vote, carbon credit and other assets -- sending you a copy is a really bad idea. If I send you 100 dollars, it's really important that I don't still have the money --
+lang:he
+Accept-Language:he
 
 ###
 
 GET http://localhost:8010/phrases
 Accept:*/*
 Cache-Control:no-cache
-text:y que no puedo enviártelo. Los criptógrafos lo han llamado problema de "doble gasto" durante mucho tiempo
-lang:EN
-
-<> 2018-05-20T113418.200.json
-
-###
-
-GET http://localhost:8010/phrases
-Accept:*/*
-Cache-Control:no-cache
-text:and that I can't send it to you. This has been called the "double-spend" problem by cryptographers for a long time
-lang:EN
-
-<> 2018-05-20T113304.200.json
+text:You know, for the past few decades, we've had the internet of information. And when I send you an email or a PowerPoint file or something, I'm actually not sending you the original, I'm sending you a copy. And that's great. This is democratized information. But when it comes to assets -- things like money, financial assets like stocks and bonds, loyalty points, intellectual property, music, art, a vote, carbon credit and other assets -- sending you a copy is a really bad idea. If I send you 100 dollars, it's really important that I don't still have the money --
+lang:he
+Accept-Language:he
 
 ###
 
 GET http://localhost:8010/phrases
 Accept:*/*
 Cache-Control:no-cache
-text:and that I can't send it to you. This has been called the "double-spend" problem by cryptographers for a long time
-lang:EN
-
-<> 2018-05-20T113250.200.json
-
-###
-
-GET http://localhost:8010/phrases
-Accept:*/*
-Cache-Control:no-cache
-text:and that I can't send it to you. This has been called the "double-spend" problem by cryptographers for a long time
-lang:EN
+text:You know, for the past few decades, we've had the internet of information. And when I send you an email or a PowerPoint file or something, I'm actually not sending you the original, I'm sending you a copy. And that's great. This is democratized information. But when it comes to assets -- things like money, financial assets like stocks and bonds, loyalty points, intellectual property, music, art, a vote, carbon credit and other assets -- sending you a copy is a really bad idea. If I send you 100 dollars, it's really important that I don't still have the money --
+lang:he
+Accept-Language:he
 
 ###
 
 GET http://localhost:8010/phrases
 Accept:*/*
 Cache-Control:no-cache
-text:and that I can't send it to you. This has been called the "double-spend" problem by cryptographers for a long time
-lang:EN
+text:You know, for the past few decades, we've had the internet of information. And when I send you an email or a PowerPoint file or something, I'm actually not sending you the original, I'm sending you a copy. And that's great. This is democratized information. But when it comes to assets -- things like money, financial assets like stocks and bonds, loyalty points, intellectual property, music, art, a vote, carbon credit and other assets -- sending you a copy is a really bad idea. If I send you 100 dollars, it's really important that I don't still have the money --
+lang:he
+Accept-Language:he
 
 ###
 
 GET http://localhost:8010/phrases
 Accept:*/*
 Cache-Control:no-cache
-text:and that I can't send it to you. This has been called the "double-spend" problem by cryptographers for a long time
-lang:EN
+text:You know, for the past few decades, we've had the internet of information. And when I send you an email or a PowerPoint file or something, I'm actually not sending you the original, I'm sending you a copy. And that's great. This is democratized information. But when it comes to assets -- things like money, financial assets like stocks and bonds, loyalty points, intellectual property, music, art, a vote, carbon credit and other assets -- sending you a copy is a really bad idea. If I send you 100 dollars, it's really important that I don't still have the money --
+lang:he
+Accept-Language:he
 
 ###
 
 GET http://localhost:8010/phrases
 Accept:*/*
 Cache-Control:no-cache
-text:and that I can't send it to you. This has been called the "double-spend" problem by cryptographers for a long time
-lang:EN
+text:You know, for the past few decades, we've had the internet of information. And when I send you an email or a PowerPoint file or something, I'm actually not sending you the original, I'm sending you a copy. And that's great. This is democratized information. But when it comes to assets -- things like money, financial assets like stocks and bonds, loyalty points, intellectual property, music, art, a vote, carbon credit and other assets -- sending you a copy is a really bad idea. If I send you 100 dollars, it's really important that I don't still have the money --
+lang:he
+Accept-Language:he
 
 ###
 
 GET http://localhost:8010/phrases
 Accept:*/*
 Cache-Control:no-cache
-text:and that I can't send it to you. This has been called the "double-spend" problem by cryptographers for a long time
-lang:EN
-
-<> 2018-05-20T112029.200.json
-
-###
-
-GET http://localhost:8010/phrases
-Accept:*/*
-Cache-Control:no-cache
-text:and that I can't send it to you. This has been called the "double-spend" problem by cryptographers for a long time.
-lang:EN
-
-<> 2018-05-20T112003.200.json
+text:You know, for the past few decades, we've had the internet of information. And when I send you an email or a PowerPoint file or something, I'm actually not sending you the original, I'm sending you a copy. And that's great. This is democratized information. But when it comes to assets -- things like money, financial assets like stocks and bonds, loyalty points, intellectual property, music, art, a vote, carbon credit and other assets -- sending you a copy is a really bad idea. If I send you 100 dollars, it's really important that I don't still have the money --
+lang:he
+Accept-Language:he
 
 ###
 
 GET http://localhost:8010/phrases
 Accept:*/*
 Cache-Control:no-cache
-text:e scan index with the size of array. For this to work the index var needs to be declared b
-lang:EN
-
-<> 2018-05-20T111804.200.json
-
-###
-
-GET http://localhost:8010/phrases
-Accept:*/*
-Cache-Control:no-cache
-text:
-lang:EN
-
-<> 2018-05-20T111616.200.json
+text:You know, for the past few decades, we've had the internet of information. And when I send you an email or a PowerPoint file or something, I'm actually not sending you the original, I'm sending you a copy. And that's great. This is democratized information. But when it comes to assets -- things like money, financial assets like stocks and bonds, loyalty points, intellectual property, music, art, a vote, carbon credit and other assets -- sending you a copy is a really bad idea. If I send you 100 dollars, it's really important that I don't still have the money --
+lang:he
+Accept-Language:he
 
 ###
 
 GET http://localhost:8010/phrases
 Accept:*/*
 Cache-Control:no-cache
-text:adasuyzjgafs
-lang:EN
-
-<> 2018-05-20T111542.200.json
-
-###
-
-GET http://localhost:8010/phrases
-Accept:*/*
-Cache-Control:no-cache
-text:adasuyzjgafs
-lang:EN
-
-<> 2018-05-20T111519.200.json
+text:You know, for the past few decades, we've had the internet of information. And when I send you an email or a PowerPoint file or something, I'm actually not sending you the original, I'm sending you a copy. And that's great. This is democratized information. But when it comes to assets -- things like money, financial assets like stocks and bonds, loyalty points, intellectual property, music, art, a vote, carbon credit and other assets -- sending you a copy is a really bad idea. If I send you 100 dollars, it's really important that I don't still have the money --
+lang:he
+Accept-Language:he
 
 ###
 
 GET http://localhost:8010/phrases
 Accept:*/*
 Cache-Control:no-cache
-text:adasuyzjgafs
-lang:EN
-
-<> 2018-05-20T111451.200.json
-
-###
-
-GET http://localhost:8010/phrases
-Accept:*/*
-Cache-Control:no-cache
-text:adasuyzjgafs
-lang:EN
+text:You know, for the past few decades, we've had the internet of information. And when I send you an email or a PowerPoint file or something, I'm actually not sending you the original, I'm sending you a copy. And that's great. This is democratized information. But when it comes to assets -- things like money, financial assets like stocks and bonds, loyalty points, intellectual property, music, art, a vote, carbon credit and other assets -- sending you a copy is a really bad idea. If I send you 100 dollars, it's really important that I don't still have the money --
+lang:he
+Accept-Language:he
 
 ###
 
 GET http://localhost:8010/phrases
 Accept:*/*
 Cache-Control:no-cache
-text:adasuyzjgafs
-lang:EN
+text:You know, for the past few decades, we've had the internet of information. And when I send you an email or a PowerPoint file or something, I'm actually not sending you the original, I'm sending you a copy. And that's great. This is democratized information. But when it comes to assets -- things like money, financial assets like stocks and bonds, loyalty points, intellectual property, music, art, a vote, carbon credit and other assets -- sending you a copy is a really bad idea. If I send you 100 dollars, it's really important that I don't still have the money --
+lang:he
+Accept-Language:he
 
 ###
 
 GET http://localhost:8010/phrases
 Accept:*/*
 Cache-Control:no-cache
-text:Everything you need to know about dogs, including dog breeds, how to adopt a dog, b
-lang:EN
-
-<> 2018-05-20T111050.200.json
-
-###
-
-GET http://localhost:8010/phrases
-Accept:*/*
-Cache-Control:no-cache
-text:Everything you need to know about dogs, including dog breeds, how to adopt a dog, b
-lang:EN
-
-<> 2018-05-20T110958.200.json
+text:You know, for the past few decades, we've had the internet of information. And when I send you an email or a PowerPoint file or something, I'm actually not sending you the original, I'm sending you a copy. And that's great. This is democratized information. But when it comes to assets -- things like money, financial assets like stocks and bonds, loyalty points, intellectual property, music, art, a vote, carbon credit and other assets -- sending you a copy is a really bad idea. If I send you 100 dollars, it's really important that I don't still have the money --
+lang:he
+Accept-Language:he
 
 ###
 
 GET http://localhost:8010/phrases
 Accept:*/*
 Cache-Control:no-cache
-text:Everything you need to know about dogs, including dog breeds, how to adopt a dog, b
-lang:EN
+text:You know, for the past few decades, we've had the internet of information. And when I send you an email or a PowerPoint file or something, I'm actually not sending you the original, I'm sending you a copy. And that's great. This is democratized information. But when it comes to assets -- things like money, financial assets like stocks and bonds, loyalty points, intellectual property, music, art, a vote, carbon credit and other assets -- sending you a copy is a really bad idea. If I send you 100 dollars, it's really important that I don't still have the money --
+lang:he
+Accept-Language:he
 
 ###
 
 GET http://localhost:8010/phrases
 Accept:*/*
 Cache-Control:no-cache
-text:Everything you need to know about dogs, including dog breeds, how to adopt a dog, b
-lang:EN
+text:You know, for the past few decades, we've had the internet of information. And when I send you an email or a PowerPoint file or something, I'm actually not sending you the original, I'm sending you a copy. And that's great. This is democratized information. But when it comes to assets -- things like money, financial assets like stocks and bonds, loyalty points, intellectual property, music, art, a vote, carbon credit and other assets -- sending you a copy is a really bad idea. If I send you 100 dollars, it's really important that I don't still have the money --
+lang:he
+Accept-Language:he
+
+###
+
+GET http://localhost:8010/phrases
+Accept:*/*
+Cache-Control:no-cache
+text:You know, for the past few decades, we've had the internet of information. And when I send you an email or a PowerPoint file or something, I'm actually not sending you the original, I'm sending you a copy. And that's great. This is democratized information. But when it comes to assets -- things like money, financial assets like stocks and bonds, loyalty points, intellectual property, music, art, a vote, carbon credit and other assets -- sending you a copy is a really bad idea. If I send you 100 dollars, it's really important that I don't still have the money --
+lang:he
+Accept-Language:he
+
+###
+
+GET http://localhost:8011/phrases
+Accept:*/*
+Cache-Control:no-cache
+text:You know, for the past few decades, we've had the internet of information. And when I send you an email or a PowerPoint file or something, I'm actually not sending you the original, I'm sending you a copy. And that's great. This is democratized information. But when it comes to assets -- things like money, financial assets like stocks and bonds, loyalty points, intellectual property, music, art, a vote, carbon credit and other assets -- sending you a copy is a really bad idea. If I send you 100 dollars, it's really important that I don't still have the money --
+lang:he
+Accept-Language:he
+
+###
+
+GET http://localhost:8011/phrases
+Accept:*/*
+Cache-Control:no-cache
+text:You know, for the past few decades, we've had the internet of information. And when I send you an email or a PowerPoint file or something, I'm actually not sending you the original, I'm sending you a copy. And that's great. This is democratized information. But when it comes to assets -- things like money, financial assets like stocks and bonds, loyalty points, intellectual property, music, art, a vote, carbon credit and other assets -- sending you a copy is a really bad idea. If I send you 100 dollars, it's really important that I don't still have the money --
+lang:he
+Accept-Language:he
+
+###
+
+GET http://localhost:8011/phrases
+Accept:*/*
+Cache-Control:no-cache
+text:You know, for the past few decades, we've had the internet of information. And when I send you an email or a PowerPoint file or something, I'm actually not sending you the original, I'm sending you a copy. And that's great. This is democratized information. But when it comes to assets -- things like money, financial assets like stocks and bonds, loyalty points, intellectual property, music, art, a vote, carbon credit and other assets -- sending you a copy is a really bad idea. If I send you 100 dollars, it's really important that I don't still have the money --
+lang:he
+Accept-Language:he
+
+###
+
+GET http://localhost:8011/phrases
+Accept:*/*
+Cache-Control:no-cache
+text:You know, for the past few decades, we've had the internet of information. And when I send you an email or a PowerPoint file or something, I'm actually not sending you the original, I'm sending you a copy. And that's great. This is democratized information. But when it comes to assets -- things like money, financial assets like stocks and bonds, loyalty points, intellectual property, music, art, a vote, carbon credit and other assets -- sending you a copy is a really bad idea. If I send you 100 dollars, it's really important that I don't still have the money --
+lang:he
+Accept-Language:he
+
+<> 2018-05-22T101316.200.json
+
+###
+
+GET http://localhost:8011/phrases
+Accept:*/*
+Cache-Control:no-cache
+text:You know, for the past few decades, we've had the internet of information. And when I send you an email or a PowerPoint file or something, I'm actually not sending you the original, I'm sending you a copy. And that's great. This is democratized information. But when it comes to assets -- things like money, financial assets like stocks and bonds, loyalty points, intellectual property, music, art, a vote, carbon credit and other assets -- sending you a copy is a really bad idea. If I send you 100 dollars, it's really important that I don't still have the money --
+lang:he
+Accept-Language:he
+
+<> 2018-05-22T101312.200.json
+
+###
+
+GET http://localhost:8011/phrases
+Accept:*/*
+Cache-Control:no-cache
+text:You know, for the past few decades, we've had the internet of information. And when I send you an email or a PowerPoint file or something, I'm actually not sending you the original, I'm sending you a copy. And that's great. This is democratized information. But when it comes to assets -- things like money, financial assets like stocks and bonds, loyalty points, intellectual property, music, art, a vote, carbon credit and other assets -- sending you a copy is a really bad idea. If I send you 100 dollars, it's really important that I don't still have the money --
+lang:he
+Accept-Language:he
+
+<> 2018-05-22T101207.200.json
+
+###
+
+GET http://localhost:8011/phrases
+Accept:*/*
+Cache-Control:no-cache
+text:You know, for the past few decades, we've had the internet of information. And when I send you an email or a PowerPoint file or something, I'm actually not sending you the original, I'm sending you a copy. And that's great. This is democratized information. But when it comes to assets -- things like money, financial assets like stocks and bonds, loyalty points, intellectual property, music, art, a vote, carbon credit and other assets -- sending you a copy is a really bad idea. If I send you 100 dollars, it's really important that I don't still have the money --
+lang:he
+Accept-Language:he
+
+###
+
+GET http://localhost:8011/phrases
+Accept:*/*
+Cache-Control:no-cache
+text:You know, for the past few decades, we've had the internet of information. And when I send you an email or a PowerPoint file or something, I'm actually not sending you the original, I'm sending you a copy. And that's great. This is democratized information. But when it comes to assets -- things like money, financial assets like stocks and bonds, loyalty points, intellectual property, music, art, a vote, carbon credit and other assets -- sending you a copy is a really bad idea. If I send you 100 dollars, it's really important that I don't still have the money --
+lang:he
+Accept-Language:he
+
+<> 2018-05-22T101128.200.json
 
 ###
 
