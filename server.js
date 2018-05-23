@@ -5,8 +5,6 @@ const TextRazor = require('textrazor')
 //nitai - 1f5b8b282f0efbf7da5f6c543a16a45d58d3ec090ba069c92ffc9587
 //dyny - 60d32def4796a0ba0bc0d0f82d0414f9dcf71f9b681c8d7b2fbee5a9
 const textRazor = new TextRazor('60d32def4796a0ba0bc0d0f82d0414f9dcf71f9b681c8d7b2fbee5a9')
-const SummaryBot = require('summarybot');
-const summarizer = new SummaryBot();
 const wiki = require('wikijs').default; //Wikipedia API
 
 var app = express();
@@ -116,8 +114,9 @@ async function langPage(page, userLang) {
                 obj.title = langTitle;
                 obj.url = page.raw.fullurl;
                 page.summary().then(summary => {
-                    var summaryOfSummary = summarizer.run(summary, 2, false)
-                    obj.summary = summaryOfSummary;
+                    summary = summary.split('. ');
+
+                    obj.summary = summary[0] + ". " +summary[1];
                     if (obj.image != undefined) {
                         resolve(obj);
                     }
