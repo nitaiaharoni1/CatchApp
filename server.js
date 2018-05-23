@@ -101,6 +101,7 @@ async function langPage(page, userLang) {
             if (langsArray.length < 3) {    //does not return object with less then 5 translations
                 resolve(obj);
             }
+            var englishTitle = page.raw.title;
             langTitle = page.raw.title;
             langCountry = "en";
             for (var i = 0; i < langsArray.length; i++) {
@@ -111,7 +112,8 @@ async function langPage(page, userLang) {
                 }
             }
             wiki({apiUrl: 'http://' + langCountry + '.wikipedia.org/w/api.php'}).page(langTitle).then(page => {
-                obj.title = page.raw.title;
+                obj.englishTitle = englishTitle;
+                obj.title = langTitle;
                 obj.url = page.raw.fullurl;
                 page.summary().then(summary => {
                     var summaryOfSummary = summarizer.run(summary, 1, false)
