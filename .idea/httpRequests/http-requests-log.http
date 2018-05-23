@@ -1,6 +1,93 @@
 GET http://localhost:8010/input
 Accept:*/*
 Cache-Control:no-cache
+text:server
+lang:en
+Accept-Language:he
+
+<> 2018-05-24T120805.200.json
+
+###
+
+GET http://localhost:8010/input
+Accept:*/*
+Cache-Control:no-cache
+text:server
+lang:en
+Accept-Language:he
+
+###
+
+GET http://localhost:8010/phrases
+Accept:*/*
+Cache-Control:no-cache
+text:server
+lang:en
+Accept-Language:he
+
+###
+
+GET http://localhost:8010/input
+Accept:*/*
+Cache-Control:no-cache
+text:server
+lang:en
+Accept-Language:he
+
+###
+
+GET http://localhost:8010/input
+Accept:*/*
+Cache-Control:no-cache
+text:server
+lang:en
+Accept-Language:he
+
+<> 2018-05-23T115714.200.json
+
+###
+
+GET http://localhost:8010/input
+Accept:*/*
+Cache-Control:no-cache
+text:server
+lang:en
+Accept-Language:he
+
+###
+
+GET http://localhost:8010/input
+Accept:*/*
+Cache-Control:no-cache
+text:server
+lang:en
+Accept-Language:he
+
+###
+
+GET http://localhost:8010/input
+Accept:*/*
+Cache-Control:no-cache
+text:server
+lang:en
+Accept-Language:he
+
+<> 2018-05-23T114341.200.json
+
+###
+
+GET http://localhost:8010/input
+Accept:*/*
+Cache-Control:no-cache
+text:Ethiopia and sudan
+lang:en
+Accept-Language:he
+
+###
+
+GET http://localhost:8010/input
+Accept:*/*
+Cache-Control:no-cache
 text:Ethiopia and sudan
 lang:en
 Accept-Language:he
@@ -285,87 +372,6 @@ Accept:*/*
 Cache-Control:no-cache
 text:Ethiopia and sudan
 lang:en
-Accept-Language:he
-
-###
-
-GET http://localhost:8010/input
-Accept:*/*
-Cache-Control:no-cache
-text:Ethiopia and sudan
-lang:es
-Accept-Language:he
-
-###
-
-GET http://localhost:8010/input
-Accept:*/*
-Cache-Control:no-cache
-text:Ethiopia and sudan
-lang:es
-Accept-Language:he
-
-###
-
-GET http://localhost:8010/input
-Accept:*/*
-Cache-Control:no-cache
-text:Ethiopia and sudan
-lang:es
-Accept-Language:he
-
-###
-
-GET http://localhost:8010/input
-Accept:*/*
-Cache-Control:no-cache
-text:Ethiopia and sudan
-lang:es
-Accept-Language:he
-
-###
-
-GET http://localhost:8010/input
-Accept:*/*
-Cache-Control:no-cache
-text:Ethiopia and sudan
-lang:es
-Accept-Language:he
-
-###
-
-GET http://localhost:8010/input
-Accept:*/*
-Cache-Control:no-cache
-text:Ethiopia and sudan
-lang:es
-Accept-Language:he
-
-###
-
-GET http://localhost:8010/input
-Accept:*/*
-Cache-Control:no-cache
-text:Ethiopia and sudan
-lang:es
-Accept-Language:he
-
-###
-
-GET http://localhost:8010/input
-Accept:*/*
-Cache-Control:no-cache
-text:Ethiopia and sudan
-lang:es
-Accept-Language:he
-
-###
-
-GET http://localhost:8010/input
-Accept:*/*
-Cache-Control:no-cache
-text:Ethiopia and sudan
-lang:es
 Accept-Language:he
 
 ###

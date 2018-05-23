@@ -48,7 +48,9 @@ app.get("/input", function(req, res){
     let userLang = req.headers.lang.toLowerCase();
     let obj = {};
     let phrases = text.split(" ");
-    phrases.push(text);
+    if(phrases.length > 1){
+        phrases.push(text);
+    }
     phrasesLoopInput(phrases, userLang).then(obj =>{
         res.send(obj);
     }).catch(err => console.error(err));
@@ -114,21 +116,66 @@ async function wikiTerm(term, userLang){
         let obj = {};
         let counter = 0;
         wiki().page(term).then(page =>{
-            findLang(page, userLang).then(arr =>{ //country,langTitle,englishTitle
-                objBuild(arr[0], arr[1], arr[2]).then(obj =>{
-                    resolve(obj);
-                }).catch(err =>{
-                    console.error(err);
-                    resolve();
-                });
+            page.html().then(html =>{
+                if(html.indexOf("may refer to") != -1){
+                    page.links().then(links =>{
+                        let link = links[0];
+                        let linkArr = [];
+                        for(var i in links){
+                            if(links[i].toLowerCase().startsWith(term.toLowerCase())){
+                                linkArr.push(links[i]);
+                            }
+                            if(linkArr.length>1){
+                                var maxLength = 0;
+                                var maxJ;
+                                for(var j in linkArr){
+                                    if(linkArr[j].length>maxLength){
+                                        maxLength = linkArr[j].length;
+                                        maxJ = j;
+                                    }
+                                }
+                                link = linkArr[maxJ];
+                            }else if (linkArr.length == 1){
+                                link = linkArr[0];
+                            }
+                        }
+                        wiki().page(link).then(page =>{
+                            findLang(page, userLang).then(arr =>{ //country,langTitle,englishTitle
+                                objBuild(arr[0], arr[1], arr[2]).then(obj =>{
+                                    resolve(obj);
+                                }).catch(err =>{
+                                    console.error(err);
+                                    resolve();
+                                });
+                            }).catch(err =>{
+                                console.error(err);
+                                resolve();
+                            });
+                        }).catch(err =>{
+                            console.error(err);
+                            resolve();
+                        });
+                    }).catch(err =>{
+                        console.error(err);
+                        resolve();
+                    });
+                } else{
+                    findLang(page, userLang).then(arr =>{ //country,langTitle,englishTitle
+                        objBuild(arr[0], arr[1], arr[2]).then(obj =>{
+                            resolve(obj);
+                        }).catch(err =>{
+                            console.error(err);
+                            resolve();
+                        });
+                    }).catch(err =>{
+                        console.error(err);
+                        resolve();
+                    });
+                }
             }).catch(err =>{
                 console.error(err);
                 resolve();
-
             });
-        }).catch(err =>{
-            console.error(err);
-            resolve();
         });
     });
     return retWikiTerms;
