@@ -27,6 +27,7 @@
     "nodejs-text-summarizer": "^2.0.3",
     "nodemon": "^1.15.1",
     "request": "^2.83.0",
+    "summarybot": "0.0.7",
     "textrazor": "^2.1.0",
     "wav-arraybuffer": "^0.1.0",
     "wikijs": "^4.5.0"
