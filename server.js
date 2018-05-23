@@ -55,7 +55,7 @@ async function phrasesLoop(phrases, userLang){
         });
         finalPhrases.forEach(function(term, j){
             wikiTerm(term, lang).then(wiki =>{
-                obj[wiki.title] = wiki;
+                obj[wiki.englishTitle] = wiki;
                 counter++;
                 if(counter == finalPhrases.length){
                     resolve(obj);
@@ -74,8 +74,13 @@ async function wikiTerm(term, userLang){
         let obj = {};
         let counter = 0;
         wiki().page(term).then(page =>{
-            langPage(page, userLang).then(obj =>{
-                resolve(obj);
+            findLang(page, userLang).then(arr =>{ //country,langTitle,englishTitle
+                objBuild(arr[0], arr[1], arr[2]).then(obj =>{
+                    resolve(obj);
+                }).catch(err =>{
+                    console.error(err);
+                    resolve(obj);
+                });
             }).catch(err =>{
                 console.error(err);
                 resolve(obj);
@@ -92,65 +97,80 @@ async function wikiTerm(term, userLang){
     return retWikiTerms;
 }
 
-async function langPage(page, userLang){
-    var langObj = await new Promise(resolve =>{
+async function objBuild(langCountry, langTitle, englishTitle){
+    var obj = await new Promise(resolve =>{
         var obj = {};
-        page.langlinks().then(langsArray =>{
-            if(langsArray.length < 3){    //does not return object with less then 5 translations
-                resolve(obj);
-            }
+        wiki({apiUrl: 'http://' + langCountry + '.wikipedia.org/w/api.php'}).page(langTitle).then(page =>{
+            obj.title = langTitle;
+            obj.englishTitle = englishTitle;
+            obj.url = page.raw.fullurl;
+            page.summary().then(summary =>{
+                summary = summary.split(/[.;]/);
+                obj.summary = "";
+                for(var i = 0; i < summary.length; i++){
+                    if(obj.summary.length < 350){
 
-            langTitle = page.raw.title;
-            langCountry = "en";
-            for(var i = 0; i < langsArray.length; i++){
-                if(langsArray[i].lang == userLang){
-                    langTitle = langsArray[i].title;
-                    langCountry = userLang;
-                    break;
+                        obj.summary += summary[i];
+                    }
                 }
-            }
-            wiki({apiUrl: 'http://' + langCountry + '.wikipedia.org/w/api.php'}).page(langTitle).then(page =>{
-                obj.title = langTitle;
-                obj.englishTitle = langTitle;
-                obj.url = page.raw.fullurl;
-                page.summary().then(summary =>{
-                    summary = summary.split(/[.;]/);
-
-                    obj.summary = summary[0] + ". " + summary[1];
-                    if(obj.image != undefined){
-                        resolve(obj);
-                    }
-                }).catch(err =>{
-                    obj.summary = "";
-                    if(obj.image != undefined){
-                        resolve(obj);
-                    }
-                });
-                page.images().then(images =>{
-                    for(var i = 0; i < images.length; i++){
-                        if(images[i].endsWith(".jpg") || images[i].endsWith(".png")){
-                            obj.image = images[i];
-                            break;
-                        }
-                    }
-                    if(obj.summary != undefined){
-                        resolve(obj);
-                    }
-                }).catch(err =>{
-                    obj.image = "";
-                    if(obj.summary != undefined){
-                        resolve(obj);
-                    }
-                });
+                summary = obj.summary
+                obj.summary = summary.replace(/(\[\d*\])/gm, '');
+                resolve(obj);
             }).catch(err =>{
-                console.error(err);
+                obj.summary = "";
+                if(obj.image != undefined){
+                    resolve(obj);
+                }
+            });
+            page.images().then(images =>{
+                for(var i = 0; i < images.length; i++){
+                    if(images[i].endsWith(".jpg") || images[i].endsWith(".png")){
+                        obj.image = images[i];
+                        break;
+                    }
+                }
+                if(obj.summary != undefined){
+                    resolve(obj);
+                }
+            }).catch(err =>{
+                obj.image = "";
+                if(obj.summary != undefined){
+                    resolve(obj);
+                }
             });
         }).catch(err =>{
             console.error(err);
         });
     });
-    return langObj;
+    return obj;
 }
+
+async function findLang(page, userLang){
+    var langArr = await new Promise(resolve =>{
+        page.langlinks().then(langsArray =>{
+            var arr = [];
+            if(langsArray.length < 3){    //does not return object with less then 5 translations
+                resolve(obj);
+            }
+            arr[2] = page.raw.title; //englishTitle
+            langTitle = page.raw.title;
+            langCountry = "en";
+            for(var i = 0; i < langsArray.length; i++){
+                if(langsArray[i].lang == userLang){
+                    langCountry = userLang;
+                    langTitle = langsArray[i].title;
+                    break;
+                }
+            }
+            arr[0] = langCountry;
+            arr[1] = langTitle;
+            resolve(arr);
+        });
+    });
+    return langArr;
+
+}
+
 
 // page.html().then(html =>{
 //     if(html.indexOf("may refer to") != -1){
