@@ -16,8 +16,8 @@
       <file leaf-file-name="server.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/server.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="69">
-              <caret line="124" column="41" lean-forward="true" selection-start-line="124" selection-start-column="41" selection-end-line="124" selection-end-column="41" />
+            <state relative-caret-position="179">
+              <caret line="93" column="20" lean-forward="false" selection-start-line="93" selection-start-column="20" selection-end-line="93" selection-end-column="20" />
               <folding />
             </state>
           </provider>
@@ -34,8 +34,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>speechService</find>
-      <find>options</find>
       <find>keyPhrases</find>
       <find>sentiment</find>
       <find>speechServiceOptions</find>
@@ -51,7 +49,6 @@
       <find>getPhrases(</find>
       <find>out.</find>
       <find>langPage(</find>
-      <find>then</find>
       <find>phrasesLoop(</find>
       <find>term</find>
       <find>te</find>
@@ -64,6 +61,9 @@
       <find>summary</find>
       <find>for</find>
       <find>const express \= require\(\'express\'\)\;\nconst bodyParser \= require\(\'body\-parser\'\)\;\n\nconst TextRazor \= require\(\'textrazor\'\)\n\/\/nitai \- 1f5b8b282f0efbf7da5f6c543a16a45d58d3ec090ba069c92ffc9587\n\/\/dyny \- 60d32def4796a0ba0bc0d0f82d0414f9dcf71f9b681c8d7b2fbee5a9\nconst textRazor \= new TextRazor\(\'60d32def4796a0ba0bc0d0f82d0414f9dcf71f9b681c8d7b2fbee5a9\'\)\nconst wiki \= require\(\'wikijs\'\)\.default\; \/\/Wikipedia API\n\nvar app \= express\(\)\;\napp\.use\(bodyParser\.json\(\)\)\; \/\/ support json encoded bodies\napp\.use\(bodyParser\.urlencoded\(\{extended\: true\}\)\)\; \/\/ support encoded bodies\nvar object \= \{\}\nvar port \= process\.env\.PORT \|\| 8010\;\napp\.listen\(port\)\;\n\napp\.get\(\&quot;\&quot;\, function\(req\, res\)\{\n    res\.setHeader\(\'Content\-Type\'\, \'application\/json\'\)\;\n    res\.send\(\{\&quot;welcome\&quot;\: \&quot;\!\&quot;\}\)\;\n\}\)\;\n\napp\.get\(\&quot;\/phrases\&quot;\, function\(req\, res\)\{\n    res\.setHeader\(\'Content\-Type\'\, \'application\/json\'\)\;\n    let textRazorOptions \= \{extractors\: \'entities\, topics\, phrases\'\}\n    let text \= req\.headers\.text\n    let userLang \= req\.headers\.lang\.toLowerCase\(\)\;\n    if\(text\.length \=\= 0\)\{\n        res\.send\(\{\}\)\;\n    \}\n    textRazor\.exec\(text\, textRazorOptions\)\.then\(terms \=\&gt;\{\n        let phrases \= terms\.response\.entities\;\n        if\(phrases \!\= undefined\)\{\n            phrasesLoop\(phrases\, userLang\)\.then\(obj \=\&gt;\{\n                res\.send\(obj\)\;\n            \}\)\.catch\(err \=\&gt; console\.error\(err\)\)\;\n        \} else\{\n            res\.send\(\{\}\)\;\n        \}\n    \}\)\.catch\(err \=\&gt;\{\n        console\.error\(err\)\;\n    \}\)\;\n\}\)\n\;\n\nasync function phrasesLoop\(phrases\, userLang\)\{\n    var ret \= await new Promise\(resolve \=\&gt;\{\n        let lang \= userLang\;\n        var counter \= 0\;\n        let finalPhrases \= \[\]\;\n        let obj \= \{\}\;\n        phrases\.forEach\(function\(termObj\, i\)\{\n            if\(\!finalPhrases\.includes\(termObj\.entityEnglishId\) \&amp;\&amp; termObj\.confidenceScore \&gt; 1\.2\)\{\n                finalPhrases\.push\(termObj\.entityEnglishId\)\;\n            \}\n        \}\)\;\n        finalPhrases\.forEach\(function\(term\, j\)\{\n            wikiTerm\(term\, lang\)\.then\(wiki \=\&gt;\{\n                obj\[wiki\.title\] \= wiki\;\n                counter\+\+\;\n                if\(counter \=\= finalPhrases\.length\)\{\n                    resolve\(obj\)\;\n                \}\n            \}\)\.catch\(err \=\&gt;\{\n                console\.error\(err\)\;\n            \}\)\;\n        \}\)\;\n    \}\)\;\n    return ret\;\n\}\n\nasync function wikiTerm\(term\, userLang\)\{\n    var retWikiTerms \= await new Promise\(resolve \=\&gt;\{\n        let langCountry\;\n        let obj \= \{\}\;\n        let counter \= 0\;\n        wiki\(\)\.page\(term\)\.then\(page \=\&gt;\{\n            findLang\(page\, userLang\)\.then\(arr \=\&gt;\{ \/\/country\,langTitle\,englishTitle\n                objBuild\(arr\[0\]\, arr\[1\]\, arr\[2\]\)\.then\(obj \=\&gt;\{\n                    resolve\(obj\)\;\n\n                \}\)\.catch\(err \=\&gt;\{\n                    console\.error\(err\)\;\n                    resolve\(obj\)\;\n                \}\)\;\n            \}\)\.catch\(err \=\&gt;\{\n                console\.error\(err\)\;\n                resolve\(obj\)\;\n            \}\)\;\n        \}\)\.catch\(err \=\&gt;\{\n            console\.error\(err\)\;\n            resolve\(obj\)\;\n        \}\)\;\n    \}\)\.catch\(err \=\&gt;\{\n        console\.error\(err\)\;\n        resolve\(obj\)\;\n    \}\)\;\n\n    return retWikiTerms\;\n\}\n\nasync function objBuild\(langCountry\, langTitle\, englishTitle\)\{\n    var obj \= await new Promise\(resolve \=\&gt;\{\n        var obj \= \{\}\;\n        wiki\(\{apiUrl\: \'http\:\/\/\' \+ langCountry \+ \'\.wikipedia\.org\/w\/api\.php\'\}\)\.page\(langTitle\)\.then\(page \=\&gt;\{\n            obj\.title \= langTitle\;\n            obj\.englishTitle \= langTitle\;\n            obj\.url \= page\.raw\.fullurl\;\n            page\.summary\(\)\.then\(summary \=\&gt;\{\n                summary \= summary\.split\(\/\[\.\;\]\/\)\;\n                for\(var i \= 0\; i \&lt; summary\.length\; i\+\+\)\{\n                    if\(obj\.summary\.length \&lt;350\)\{\n                        obj\.image \= images\[i\]\;\n                        break\;\n                    \}\n                \}\n                obj\.summary \= summary\[0\] \+ \&quot;\. \&quot; \+ summary\[1\]\;\n                if\(obj\.image \!\= undefined\)\{\n                    resolve\(obj\)\;\n                \}\n            \}\)\.catch\(err \=\&gt;\{\n                obj\.summary \= \&quot;\&quot;\;\n                if\(obj\.image \!\= undefined\)\{\n                    resolve\(obj\)\;\n                \}\n            \}\)\;\n            page\.images\(\)\.then\(images \=\&gt;\{\n                for\(var i \= 0\; i \&lt; images\.length\; i\+\+\)\{\n                    if\(images\[i\]\.endsWith\(\&quot;\.jpg\&quot;\) \|\| images\[i\]\.endsWith\(\&quot;\.png\&quot;\)\)\{\n                        obj\.image \= images\[i\]\;\n                        break\;\n                    \}\n                \}\n                if\(obj\.summary \!\= undefined\)\{\n                    resolve\(obj\)\;\n                \}\n            \}\)\.catch\(err \=\&gt;\{\n                obj\.image \= \&quot;\&quot;\;\n                if\(obj\.summary \!\= undefined\)\{\n                    resolve\(obj\)\;\n                \}\n            \}\)\;\n        \}\)\.catch\(err \=\&gt;\{\n            console\.error\(err\)\;\n        \}\)\;\n    \}\)\.catch\(err \=\&gt;\{\n        console\.error\(err\)\;\n    \}\)\;\n\}\n\)\n\;\nreturn obj\;\n\}\n\nasync function findLang\(page\, userLang\)\{\n    var langArr \= await new Promise\(resolve \=\&gt;\{\n        var arr \= \[\]\;\n        page\.langlinks\(\)\.then\(langsArray \=\&gt;\{\n            if\(langsArray\.length \&lt; 3\)\{    \/\/does not return object with less then 5 translations\n                resolve\(obj\)\;\n            \}\n            arr\[3\] \= page\.raw\.title\; \/\/englishTitle\n            langTitle \= page\.raw\.title\;\n            langCountry \= \&quot;en\&quot;\;\n            for\(var i \= 0\; i \&lt; langsArray\.length\; i\+\+\)\{\n                if\(langsArray\[i\]\.lang \=\= userLang\)\{\n                    langCountry \= userLang\;\n                    langTitle \= langsArray\[i\]\.title\;\n                    break\;\n                \}\n            \}\n            arr\[0\] \= langCountry\;\n            arr\[1\] \= langTitle\;\n            resolve\(arr\)\;\n        \}\)\;\n        return langArr\;\n    \}\n\n\n\/\/ page\.html\(\)\.then\(html \=\&gt;\{\n\/\/     if\(html\.indexOf\(\&quot;may refer to\&quot;\) \!\= \-1\)\{\n\/\/         page\.links\(\)\.then\(links \=\&gt;\{\n\/\/             \/\/console\.log\(links\)\;\n\/\/             wiki\(\)\.page\(links\[0\]\)\.then\(page \=\&gt;\{\n\/\/                 langPage\(page\, userLang\)\.then\(obj \=\&gt;\{\n\/\/                     resolve\(obj\)\;\n\/\/                 \}\)\.catch\(err \=\&gt;\{\n\/\/                     console\.error\(err\)\;\n\/\/                 \}\)\;\n\/\/             \}\)\.catch\(err \=\&gt;\{\n\/\/                 console\.error\(err\)\;\n\/\/             \}\)\;\n\/\/         \}\)\.catch\(err \=\&gt;\{\n\/\/             console\.error\(err\)\;\n\/\/         \}\)\;\n\/\/     \} else\{\n\/\/         langPage\(page\, userLang\)\.then\(obj \=\&gt;\{\n\/\/             resolve\(obj\)\;\n\/\/         \}\)\.catch\(err \=\&gt;\{\n\/\/             console\.error\(err\)\;\n\/\/         \}\)\;\n\/\/     \}\n\/\/ \}\)\.catch\(err \=\&gt;\{\n\/\/     console\.error\(err\)\;\n\/\/ \}\)\;</find>
+      <find>repla</find>
+      <find>finalPhrases</find>
+      <find>then</find>
     </findStrings>
     <replaceStrings>
       <replace />
@@ -78,7 +78,7 @@
     </option>
   </component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="dummy://restClient/response75.json" root0="SKIP_INSPECTION" />
+    <setting file="dummy://restClient/response223.json" root0="SKIP_INSPECTION" />
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
@@ -167,6 +167,70 @@
   <component name="RestClientSettings">
     <option name="REQUEST_HISTORY">
       <list>
+        <RestClientRequest>
+          <option name="httpMethod" value="GET" />
+          <option name="urlBase" value="http://localhost:8010" />
+          <option name="urlPath" value="/input" />
+          <option name="headers">
+            <list>
+              <KeyValuePair>
+                <option name="key" value="Accept" />
+                <option name="value" value="*/*" />
+              </KeyValuePair>
+              <KeyValuePair>
+                <option name="key" value="Cache-Control" />
+                <option name="value" value="no-cache" />
+              </KeyValuePair>
+              <KeyValuePair>
+                <option name="key" value="text" />
+                <option name="value" value="Ethiopia and sudan" />
+              </KeyValuePair>
+              <KeyValuePair>
+                <option name="key" value="lang" />
+                <option name="value" value="en" />
+              </KeyValuePair>
+              <KeyValuePair>
+                <option name="key" value="Accept-Language" />
+                <option name="value" value="he" />
+              </KeyValuePair>
+            </list>
+          </option>
+          <option name="parametersEnabled" value="true" />
+          <option name="textToSend" value="" />
+          <option name="filesToSend" value="" />
+        </RestClientRequest>
+        <RestClientRequest>
+          <option name="httpMethod" value="GET" />
+          <option name="urlBase" value="http://localhost:8010" />
+          <option name="urlPath" value="/input" />
+          <option name="headers">
+            <list>
+              <KeyValuePair>
+                <option name="key" value="Accept" />
+                <option name="value" value="*/*" />
+              </KeyValuePair>
+              <KeyValuePair>
+                <option name="key" value="Cache-Control" />
+                <option name="value" value="no-cache" />
+              </KeyValuePair>
+              <KeyValuePair>
+                <option name="key" value="text" />
+                <option name="value" value="Ethiopia and sudan" />
+              </KeyValuePair>
+              <KeyValuePair>
+                <option name="key" value="lang" />
+                <option name="value" value="es" />
+              </KeyValuePair>
+              <KeyValuePair>
+                <option name="key" value="Accept-Language" />
+                <option name="value" value="he" />
+              </KeyValuePair>
+            </list>
+          </option>
+          <option name="parametersEnabled" value="true" />
+          <option name="textToSend" value="" />
+          <option name="filesToSend" value="" />
+        </RestClientRequest>
         <RestClientRequest>
           <option name="httpMethod" value="GET" />
           <option name="urlBase" value="http://localhost:8010" />
@@ -801,12 +865,12 @@
       <workItem from="1527015865772" duration="1185000" />
       <workItem from="1527019486818" duration="6197000" />
       <workItem from="1527051993335" duration="16387000" />
-      <workItem from="1527087078493" duration="2998000" />
+      <workItem from="1527087078493" duration="10957000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="231179000" />
+    <option name="totallyTimeSpent" value="239138000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-9" y="-9" width="1938" height="1048" extended-state="6" />
@@ -819,10 +883,10 @@
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.27442372" sideWeight="0.50625" order="8" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="REST Client" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.5288788" sideWeight="0.5537057" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="REST Client" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.5288788" sideWeight="0.6997852" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.5288788" sideWeight="0.4462943" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.34994337" sideWeight="0.4548872" order="10" side_tool="false" content_ui="tabs" x="523" y="702" width="1016" height="991" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.5288788" sideWeight="0.30021483" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.34994337" sideWeight="0.452739" order="10" side_tool="false" content_ui="tabs" x="523" y="702" width="1016" height="991" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.12137487" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -833,7 +897,7 @@
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.49037373" sideWeight="0.63050485" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.49037373" sideWeight="0.6143931" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -853,76 +917,76 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/server.js</url>
-          <line>117</line>
+          <line>76</line>
           <properties lambdaOrdinal="-1" />
-          <option name="timeStamp" value="582" />
+          <option name="timeStamp" value="686" />
         </line-breakpoint>
       </breakpoints>
-      <option name="time" value="583" />
+      <option name="time" value="701" />
     </breakpoint-manager>
     <watches-manager>
       <configuration name="NodeJSConfigurationType">
-        <watch expression="entry" language="JavaScript" />
-        <watch expression="terms[i].title" language="JavaScript" />
-        <watch expression="termObj.entityId" language="JavaScript" />
-        <watch expression="Object.keys(terms).length" language="JavaScript" />
-        <watch expression="langCountry" language="JavaScript" />
-        <watch expression="arr" language="JavaScript" />
-        <watch expression="userLang" language="JavaScript" />
-        <watch expression="images[i]" language="JavaScript" />
+        <watch expression="page.raw.title" language="JavaScript" />
         <watch expression="obj.summary" language="JavaScript" />
+        <watch expression="counter" language="JavaScript" />
+        <watch expression="images" language="JavaScript" />
+        <watch expression="wiki.englishTitle" language="JavaScript" />
+        <watch expression="wiki.image" language="JavaScript" />
+        <watch expression="wiki.title" language="JavaScript" />
+        <watch expression="page" language="JavaScript" />
+        <watch expression="term" language="JavaScript" />
       </configuration>
     </watches-manager>
   </component>
   <component name="debuggerHistoryManager">
     <expressions id="watch">
       <expression>
+        <expression-string>term</expression-string>
+        <language-id>JavaScript</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>page</expression-string>
+        <language-id>JavaScript</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>wiki.title</expression-string>
+        <language-id>JavaScript</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>wiki.image</expression-string>
+        <language-id>JavaScript</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>wiki.englishTitle</expression-string>
+        <language-id>JavaScript</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>images</expression-string>
+        <language-id>JavaScript</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>counter</expression-string>
+        <language-id>JavaScript</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
         <expression-string>obj.summary</expression-string>
         <language-id>JavaScript</language-id>
         <evaluation-mode>EXPRESSION</evaluation-mode>
       </expression>
       <expression>
-        <expression-string>images[i]</expression-string>
+        <expression-string>page.raw.title</expression-string>
         <language-id>JavaScript</language-id>
         <evaluation-mode>EXPRESSION</evaluation-mode>
       </expression>
       <expression>
-        <expression-string>userLang</expression-string>
-        <language-id>JavaScript</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>arr</expression-string>
-        <language-id>JavaScript</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>langCountry</expression-string>
-        <language-id>JavaScript</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>Object.keys(terms).length</expression-string>
-        <language-id>JavaScript</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>termObj.entityId</expression-string>
-        <language-id>JavaScript</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>terms[i].title</expression-string>
-        <language-id>JavaScript</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>entry</expression-string>
-        <language-id>JavaScript</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>Object.keys(terms)</expression-string>
+        <expression-string>phrases[i]</expression-string>
         <language-id>JavaScript</language-id>
         <evaluation-mode>EXPRESSION</evaluation-mode>
       </expression>
@@ -953,18 +1017,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/server.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/node_modules/textrazor/index.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1008">
           <caret line="53" column="0" lean-forward="false" selection-start-line="53" selection-start-column="0" selection-end-line="53" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1211,6 +1268,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1008">
           <caret line="53" column="0" lean-forward="false" selection-start-line="53" selection-start-column="0" selection-end-line="53" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1221,10 +1279,18 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/node_modules/wikijs/dist/wiki.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="1434" lean-forward="false" selection-start-line="0" selection-start-column="1434" selection-end-line="0" selection-end-column="1434" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/server.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="69">
-          <caret line="124" column="41" lean-forward="true" selection-start-line="124" selection-start-column="41" selection-end-line="124" selection-end-column="41" />
+        <state relative-caret-position="179">
+          <caret line="93" column="20" lean-forward="false" selection-start-line="93" selection-start-column="20" selection-end-line="93" selection-end-column="20" />
           <folding />
         </state>
       </provider>

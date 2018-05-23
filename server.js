@@ -1,5 +1,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
+const cogserv = require('cogserv-text-analytics')({key: "be5cce28a9694bf192daeb242d114e08"})
+const {keyPhrases, sentiment} = require('cogserv-text-analytics')
 
 const TextRazor = require('textrazor')
 //nitai - 1f5b8b282f0efbf7da5f6c543a16a45d58d3ec090ba069c92ffc9587
@@ -28,7 +30,7 @@ app.get("/phrases", function(req, res){
         res.send({});
     }
     textRazor.exec(text, textRazorOptions).then(terms =>{
-        let phrases = terms.response.entities;
+        let phrases = terms;
         if(phrases != undefined){
             phrasesLoop(phrases, userLang).then(obj =>{
                 res.send(obj);
@@ -36,9 +38,20 @@ app.get("/phrases", function(req, res){
         } else{
             res.send({});
         }
-    }).catch(err =>{
-        console.error(err);
-    });
+    }).catch(err => console.error(err));
+})
+;
+
+app.get("/input", function(req, res){
+    res.setHeader('Content-Type', 'application/json');
+    let text = req.headers.text
+    let userLang = req.headers.lang.toLowerCase();
+    let obj = {};
+    let phrases = text.split(" ");
+    phrases.push(text);
+    phrasesLoopInput(phrases, userLang).then(obj =>{
+        res.send(obj);
+    }).catch(err => console.error(err));
 })
 ;
 
@@ -68,6 +81,33 @@ async function phrasesLoop(phrases, userLang){
     return ret;
 }
 
+async function phrasesLoopInput(phrases, userLang){
+    var ret = await new Promise(resolve =>{
+        let lang = userLang;
+        var counter = 0;
+        let obj = {};
+        for(var i in phrases){
+            wikiTerm(phrases[i], lang).then(wiki =>{
+                if(wiki != undefined){
+                    obj[wiki.englishTitle] = wiki;
+                    counter++;
+                    if(counter == phrases.length){
+                        resolve(obj);
+                    }
+                } else{
+                    counter++;
+                    if(counter == phrases.length){
+                        resolve(obj);
+                    }
+                }
+            }).catch(err =>{
+                console.error(err);
+            });
+        }
+    });
+    return ret;
+}
+
 async function wikiTerm(term, userLang){
     var retWikiTerms = await new Promise(resolve =>{
         let langCountry;
@@ -79,21 +119,18 @@ async function wikiTerm(term, userLang){
                     resolve(obj);
                 }).catch(err =>{
                     console.error(err);
-                    resolve(obj);
+                    resolve();
                 });
             }).catch(err =>{
                 console.error(err);
-                resolve(obj);
+                resolve();
+
             });
         }).catch(err =>{
             console.error(err);
-            resolve(obj);
+            resolve();
         });
-    }).catch(err =>{
-        console.error(err);
-        resolve(obj);
     });
-
     return retWikiTerms;
 }
 
@@ -109,18 +146,19 @@ async function objBuild(langCountry, langTitle, englishTitle){
                 obj.summary = "";
                 for(var i = 0; i < summary.length; i++){
                     if(obj.summary.length < 350){
-
                         obj.summary += summary[i];
                     }
                 }
-                summary = obj.summary
+                summary = obj.summary;
                 obj.summary = summary.replace(/(\[\d*\])/gm, '');
-                resolve(obj);
-            }).catch(err =>{
-                obj.summary = "";
                 if(obj.image != undefined){
                     resolve(obj);
+                } else if(obj.summery == "resaults may refer to:"){
+                    resolve({});
                 }
+            }).catch(err =>{
+                console.log(err);
+                resolve(obj)
             });
             page.images().then(images =>{
                 for(var i = 0; i < images.length; i++){
@@ -129,18 +167,18 @@ async function objBuild(langCountry, langTitle, englishTitle){
                         break;
                     }
                 }
-                if(obj.summary != undefined){
+                if(obj.summary != undefined && !obj.summary.endsWith("may refer to:")){
                     resolve(obj);
+                } else{
+                    resolve();
                 }
             }).catch(err =>{
-                obj.image = "";
-                if(obj.summary != undefined){
-                    resolve(obj);
-                }
+                resolve();
             });
         }).catch(err =>{
-            console.error(err);
+            resolve();
         });
+
     });
     return obj;
 }
@@ -149,7 +187,7 @@ async function findLang(page, userLang){
     var langArr = await new Promise(resolve =>{
         page.langlinks().then(langsArray =>{
             var arr = [];
-            if(langsArray.length < 3){    //does not return object with less then 5 translations
+            if(langsArray == undefined || langsArray.length < 3){    //does not return object with less then 5 translations
                 resolve(obj);
             }
             arr[2] = page.raw.title; //englishTitle
@@ -165,10 +203,11 @@ async function findLang(page, userLang){
             arr[0] = langCountry;
             arr[1] = langTitle;
             resolve(arr);
+        }).catch(err =>{
+            console.error(err);
         });
     });
     return langArr;
-
 }
 
 
