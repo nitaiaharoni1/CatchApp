@@ -193,14 +193,14 @@ async function objBuild(langCountry, langTitle, englishTitle){
                 obj.summary = "";
                 for(var i = 0; i < summary.length; i++){
                     if(obj.summary.length < 350){
-                        obj.summary += summary[i];
+                        obj.summary += summary[i] + ".";
                     }
                 }
                 summary = obj.summary;
                 obj.summary = summary.replace(/(\[\d*\])/gm, '');
                 if(obj.image != undefined){
                     resolve(obj);
-                } else if(obj.summery == "resaults may refer to:"){
+                } else if(obj.summery.endsWith("may refer to:"){
                     resolve({});
                 }
             }).catch(err =>{
