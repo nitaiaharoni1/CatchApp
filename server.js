@@ -99,7 +99,7 @@ async function langPage(page, userLang) {
             if (langsArray.length < 3) {    //does not return object with less then 5 translations
                 resolve(obj);
             }
-            var englishTitle = page.raw.title;
+
             langTitle = page.raw.title;
             langCountry = "en";
             for (var i = 0; i < langsArray.length; i++) {
@@ -110,11 +110,11 @@ async function langPage(page, userLang) {
                 }
             }
             wiki({apiUrl: 'http://' + langCountry + '.wikipedia.org/w/api.php'}).page(langTitle).then(page => {
-                obj.englishTitle = englishTitle;
                 obj.title = langTitle;
+                obj.englishTitle = langTitle;
                 obj.url = page.raw.fullurl;
                 page.summary().then(summary => {
-                    summary = summary.split('. ');
+                    summary = summary.split(/[.;]/);
 
                     obj.summary = summary[0] + ". " +summary[1];
                     if (obj.image != undefined) {
