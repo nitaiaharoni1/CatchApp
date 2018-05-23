@@ -116,7 +116,7 @@ async function langPage(page, userLang) {
                 obj.title = langTitle;
                 obj.url = page.raw.fullurl;
                 page.summary().then(summary => {
-                    var summaryOfSummary = summarizer.run(summary, 1, false)
+                    var summaryOfSummary = summarizer.run(summary, 2, false)
                     obj.summary = summaryOfSummary;
                     if (obj.image != undefined) {
                         resolve(obj);
