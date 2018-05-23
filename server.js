@@ -119,7 +119,7 @@ async function wikiTerm(term, userLang){
             if(searched.results.length == 0){
                 resolve(obj);
             }
-            wiki().page("tel aviv").then(page =>{
+            wiki().page(term).then(page =>{
                 page.html().then(html =>{
                     if(html.indexOf("may refer to") != -1){
                         page.links().then(links =>{
