@@ -1,6 +1,133 @@
 GET http://localhost:8010/phrases
 Accept: */*
 Cache-Control: no-cache
+text: lion
+lang: he
+Accept-Language: he
+
+<> 2018-05-24T045650.200.json
+
+###
+
+GET http://localhost:8010/phrases
+Accept: */*
+Cache-Control: no-cache
+text: christiano ronaldo
+lang: he
+Accept-Language: he
+
+<> 2018-05-24T045622.200.json
+
+###
+
+GET http://localhost:8010/phrases
+Accept: */*
+Cache-Control: no-cache
+text: christiano ronaldo
+lang: he
+Accept-Language: he
+
+###
+
+GET http://localhost:8010/phrases
+Accept: */*
+Cache-Control: no-cache
+text: christiano ronaldo
+lang: he
+Accept-Language: he
+
+###
+
+GET http://localhost:8010/phrases
+Accept: */*
+Cache-Control: no-cache
+text: christiano ronaldo
+lang: he
+Accept-Language: he
+
+<> 2018-05-24T045328.200.json
+
+###
+
+GET http://localhost:8010/phrases
+Accept: */*
+Cache-Control: no-cache
+text: christiano ronaldo
+lang: he
+Accept-Language: he
+
+<> 2018-05-24T045126.200.json
+
+###
+
+GET http://localhost:8010/phrases
+Accept: */*
+Cache-Control: no-cache
+text: christiano ronaldo
+lang: he
+Accept-Language: he
+
+<> 2018-05-24T045102.200.json
+
+###
+
+GET http://localhost:8010/phrases
+Accept: */*
+Cache-Control: no-cache
+text: christiano ronaldo
+lang: he
+Accept-Language: he
+
+###
+
+GET http://localhost:8010/phrases
+Accept: */*
+Cache-Control: no-cache
+text: christiano ronaldo
+lang: he
+Accept-Language: he
+
+###
+
+GET http://localhost:8010/phrases
+Accept: */*
+Cache-Control: no-cache
+text: christiano ronaldo
+lang: he
+Accept-Language: he
+
+###
+
+GET http://localhost:8010/phrases
+Accept: */*
+Cache-Control: no-cache
+text: christiano ronaldo
+lang: he
+Accept-Language: he
+
+###
+
+GET http://localhost:8010/phrases
+Accept: */*
+Cache-Control: no-cache
+text: but when it comes to assets things like money, financial assets like stocks and bonds
+lang: he
+Accept-Language: he
+
+###
+
+GET http://localhost:8010/phrases
+Accept: */*
+Cache-Control: no-cache
+text: but when it comes to assets things like money, financial assets like stocks and bonds
+lang: he
+Accept-Language: he
+
+###
+
+GET http://localhost:8010/phrases
+Accept: */*
+Cache-Control: no-cache
 text: but when it comes to assets things like money, financial assets like stocks and bonds
 lang: he
 Accept-Language: he
@@ -340,145 +467,6 @@ Cache-Control: no-cache
 text: but when it comes to assets things like money, financial assets like stocks and bonds
 lang: en
 Accept-Language: he
-
-###
-
-GET http://localhost:8010/phrases
-Accept: */*
-Cache-Control: no-cache
-text: but when it comes to assets things like money, financial assets like stocks and bonds
-lang: en
-Accept-Language: he
-
-###
-
-GET http://localhost:8010/phrases
-Accept: */*
-Cache-Control: no-cache
-text: but when it comes to assets things like money, financial assets like stocks and bonds
-lang: en
-Accept-Language: he
-
-###
-
-GET http://localhost:8010/phrases
-Accept: */*
-Cache-Control: no-cache
-text: but when it comes to assets things like money, financial assets like stocks and bonds
-lang: en
-Accept-Language: he
-
-<> 2018-05-24T015746.200.json
-
-###
-
-GET http://localhost:8010/phrases
-Accept: */*
-Cache-Control: no-cache
-text: lion
-lang: en
-Accept-Language: he
-
-<> 2018-05-24T015316.200.json
-
-###
-
-GET http://localhost:8010/phrases
-Accept: */*
-Cache-Control: no-cache
-text: but when it comes to assets things like money, financial assets like stocks and bonds, loyalty points, intellectual property, music, art, a vote, carbon credit and other assets sending you a copy is a really bad idea
-lang: en
-Accept-Language: he
-
-<> 2018-05-24T014842.200.json
-
-###
-
-GET http://localhost:8010/phrases
-Accept: */*
-Cache-Control: no-cache
-text: but when it comes to assets things like money, financial assets like stocks and bonds, loyalty points, intellectual property, music, art, a vote, carbon credit and other assets sending you a copy is a really bad idea
-lang: en
-Accept-Language: he
-
-<> 2018-05-24T014810.200.json
-
-###
-
-GET http://localhost:8010/phrases
-Accept: */*
-Cache-Control: no-cache
-text: but when it comes to assets things like money, financial assets like stocks and bonds, loyalty points, intellectual property, music, art, a vote, carbon credit and other assets sending you a copy is a really bad idea
-lang: en
-Accept-Language: he
-
-<> 2018-05-24T014615.200.json
-
-###
-
-GET http://localhost:8010/phrases
-Accept: */*
-Cache-Control: no-cache
-text: But When It Comes To Assets -- Things Like Money, Financial Assets Like Stocks And Bonds, Loyalty Points, Intellectual Property, Music, Art, A Vote, Carbon Credit And Other Assets -- Sending You A Copy Is A Really Bad Idea.
-lang: en
-Accept-Language: he
-
-<> 2018-05-24T014508.200.json
-
-###
-
-GET http://localhost:8010/phrases
-Accept: */*
-Cache-Control: no-cache
-text: But When It Comes To Assets -- Things Like Money, Financial Assets Like Stocks And Bonds, Loyalty Points, Intellectual Property, Music, Art, A Vote, Carbon Credit And Other Assets -- Sending You A Copy Is A Really Bad Idea.
-lang: en
-Accept-Language: he
-
-<> 2018-05-24T014505.200.json
-
-###
-
-GET http://localhost:8010/phrases
-Accept: */*
-Cache-Control: no-cache
-text: But when it comes to assets -- things like money, financial assets like stocks and bonds, loyalty points, intellectual property, music, art, a vote, carbon credit and other assets -- sending you a copy is a really bad idea
-lang: en
-Accept-Language: he
-
-<> 2018-05-24T014105.200.json
-
-###
-
-GET http://localhost:8010/phrases
-Accept: */*
-Cache-Control: no-cache
-text: Hello Today We're Going To Learn About
-lang: en
-Accept-Language: he
-
-<> 2018-05-24T013442.200.json
-
-###
-
-GET http://localhost:8010/phrases
-Accept: */*
-Cache-Control: no-cache
-text: Hello Today We're Going To Learn About
-lang: en
-Accept-Language: he
-
-<> 2018-05-24T013421.200.json
-
-###
-
-GET http://localhost:8010/phrases
-Accept: */*
-Cache-Control: no-cache
-text: Hello Today We're Going To Learn About
-lang: en
-Accept-Language: he
-
-<> 2018-05-24T013322.200.json
 
 ###
 

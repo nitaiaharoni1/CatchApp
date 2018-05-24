@@ -43,18 +43,18 @@ async function phrasesLoop(phrases, userLang){
         let lang = userLang;
         let finalPhrases = [];
         for(var i = 0; i < phrases.length; i++){
-            if(!finalPhrases.includes(phrases[i].entityEnglishId)){
-                finalPhrases.push(phrases[i].entityEnglishId);
+            if(!finalPhrases.includes(phrases[i].entityId)){
+                finalPhrases.push(phrases[i].entityId);
             }
         }
         let obj = {};
         var counter = 0;
-        for(i = 0; i < finalPhrases.length; i++){
-            wikiTerm(finalPhrases[i], lang).then(wiki =>{
+        for(var j = 0; j < finalPhrases.length; j++){
+            wikiTerm(finalPhrases[j], lang).then(wiki =>{
                 if(wiki != undefined && Object.keys(wiki).length != 0){
                     if(wiki.englishTitle != undefined){
                         obj[wiki.englishTitle] = wiki;
-                    }else{
+                    } else{
                         obj.Error = wiki;
                     }
                     counter++;
@@ -77,29 +77,37 @@ async function phrasesLoop(phrases, userLang){
 }
 
 async function wikiTerm(term, userLang){
+    let term1 = term;
     var retWikiTerm = await new Promise(resolve =>{
-        let langCountry;
-        let obj = {};
-        let counter = 0;
-        wiki().page(term).then(page =>{
-            findLang(page, userLang).then(arr =>{ //country,langTitle,englishTitle
-                if(arr != undefined && arr.length == 3){
-                    objBuild(arr[0], arr[1], arr[2]).then(obj =>{
-                        resolve(obj);
+            let langCountry;
+            let obj = {};
+            let counter = 0;
+            wiki().search(term1).then(data  =>{
+                wiki().page(data.results[0]).then(page =>{
+                    findLang(page, userLang).then(arr =>{ //country,langTitle,englishTitle
+                        if(arr != undefined && arr.length == 3){
+                            objBuild(arr[0], arr[1], arr[2]).then(obj =>{
+                                resolve(obj);
+                            }).catch(err =>{
+                                console.error(err);
+                                resolve({});
+                            });
+                        }
                     }).catch(err =>{
                         console.error(err);
-                        resolve({});
+                        resolve({"Error": "Can't find Wikipedia page of: " + term1 + " in your specified language"});
                     });
-                }
+                }).catch(err =>{
+                    console.error(err);
+                    resolve({"Error": "Can't find Wikipedia page of: " + term1 + " in your specified language"});
+                });
             }).catch(err =>{
                 console.error(err);
-                resolve({"Error": "Can't find Wikipedia page of: " + term + " in your specified language"});
+                resolve({"Error": "Can't find Wikipedia search values of: " + term1});
             });
-        }).catch(err =>{
-            console.error(err);
-            resolve({"Error": "Can't find Wikipedia page of: " + term});
-        });
-    });
+        }
+        )
+    ;
     return retWikiTerm;
 }
 
