@@ -222,7 +222,7 @@ async function objBuild(langCountry, langTitle, englishTitle){
                     }
                 }
                 summary = obj.summary;
-                summary = summary.replace(/\.\./gm, '');
+                summary = summary.replace(/\.\./gm, '.');
                 obj.summary = summary.replace(/(\[\d*\])/gm, '');
                 if(obj.image != undefined){
                     resolve(obj);
