@@ -82,7 +82,7 @@ async function wikiTerm(term, userLang){
             let langCountry;
             let obj = {};
             let counter = 0;
-            wiki().search(term1,1).then(data  =>{
+            wiki().search(term1, 1).then(data =>{
                 wiki().page(data.results[0]).then(page =>{
                     findLang(page, userLang).then(arr =>{ //country,langTitle,englishTitle
                         if(arr != undefined && arr.length == 3){
@@ -119,20 +119,20 @@ async function objBuild(langCountry, langTitle, englishTitle){
         wiki({apiUrl: 'http://' + langCountry + '.wikipedia.org/w/api.php'}).page(langTitle).then(page =>{
             obj.url = page.raw.fullurl;
             page.summary().then(summary =>{
-                if(summary.length < 110 || summary == undefined){
-                    obj.summary = "";
-                } else{
-                    summary = summary.split(/[.;]/);
-                    var sumSummary = "";
-                    for(var i = 0; i < summary.length; i++){
-                        if(sumSummary.length < 350){
-                            sumSummary += summary[i] + ".";
-                        }
+                // if(summary.length < 110 || summary == undefined){
+                //     obj.summary = "";
+                // } else{
+                summary = summary.split(/[.;]/);
+                var sumSummary = "";
+                for(var i = 0; i < summary.length; i++){
+                    if(sumSummary.length < 350){
+                        sumSummary += summary[i] + ".";
                     }
-                    sumSummary = sumSummary.replace(/\.\./gm, '.');
-                    sumSummary = sumSummary.replace(/(\[\d*\])/gm, '');
-                    obj.summary = sumSummary;
                 }
+                sumSummary = sumSummary.replace(/\.\./gm, '.');
+                sumSummary = sumSummary.replace(/(\[\d*\])/gm, '');
+                obj.summary = sumSummary;
+                // }
                 if(obj.summary != ""){
                     obj.image = "";
                     page.images().then(images =>{
