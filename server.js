@@ -25,7 +25,7 @@ app.get("/phrases", function(req, res){
     res.setHeader('Content-Type', 'application/json');
     let textRazorOptions = {extractors: 'entities'}
     let text = req.headers.text.toUpperCase();
-    let userLang = req.headers.lang.toLowerCase();
+    userLang = req.headers.lang.toLowerCase();
     textRazor.exec(text, textRazorOptions).then(terms =>{
         let phrases = terms.response.entities;
         if(phrases != undefined){
@@ -120,7 +120,7 @@ async function objBuild(langCountry, langTitle, englishTitle){
             obj.url = page.raw.fullurl;
             page.summary().then(summary =>{
                 // if(summary.length < 110 || summary == undefined){
-                //     obj.summary = "";
+                obj.summary = "";
                 // } else{
                 summary = summary.split(/[.;]/);
                 var sumSummary = "";
@@ -131,25 +131,58 @@ async function objBuild(langCountry, langTitle, englishTitle){
                 }
                 sumSummary = sumSummary.replace(/\.\./gm, '.');
                 sumSummary = sumSummary.replace(/(\[\d*\])/gm, '');
-                obj.summary = sumSummary;
-                // }
-                if(obj.summary != ""){
-                    obj.image = "";
-                    page.images().then(images =>{
-                        if(images != undefined){
-                            for(var i = 0; i < images.length; i++){
-                                if(images[i].endsWith(".jpg") || images[i].endsWith(".png")){
-                                    obj.image = images[i];
-                                    break;
+                if(sumSummary.indexOf("may refer to:") != -1){
+                    page.links().then(links =>{
+                        if(links.length > 0){
+                            let link = links[0];
+                            let linkArr = [];
+                            for(var i in links){
+                                if(links[i].toLowerCase().startsWith(langTitle.toLowerCase())){
+                                    linkArr.push(links[i]);
                                 }
                             }
+                            if(linkArr.length > 1){
+                                var minLength = 10000;
+                                var minJ;
+                                for(var j in linkArr){
+                                    if(linkArr[j].length < minLength){
+                                        minLength = linkArr[j].length;
+                                        minJ = j;
+                                    }
+                                }
+                                link = linkArr[minJ];
+
+                            } else if(linkArr.length == 1){
+                                link = linkArr[0];
+                            }
+                            wikiTerm(link, userLang).then(obj1 =>{
+                                resolve(obj1);
+                            });
+                        } else{
+                            resolve({"Error": "No links for term"});
                         }
-                        resolve(obj);
-                    }).catch(err =>{
-                        resolve(obj);
+
                     });
                 } else{
-                    resolve({"Error": "Summery of " + englishTitle + " is to short and probably not found right"});
+                    obj.summary = sumSummary;
+                    if(obj.summary != ""){
+                        obj.image = "";
+                        page.images().then(images =>{
+                            if(images != undefined){
+                                for(var i = 0; i < images.length; i++){
+                                    if(images[i].endsWith(".jpg") || images[i].endsWith(".png")){
+                                        obj.image = images[i];
+                                        break;
+                                    }
+                                }
+                            }
+                            resolve(obj);
+                        }).catch(err =>{
+                            resolve(obj);
+                        });
+                    } else{
+                        resolve({"Error": "Summery of " + englishTitle + " is to short and probably not found right"});
+                    }
                 }
             })
         })
