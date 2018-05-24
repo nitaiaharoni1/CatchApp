@@ -52,7 +52,11 @@ async function phrasesLoop(phrases, userLang){
         for(i = 0; i < finalPhrases.length; i++){
             wikiTerm(finalPhrases[i], lang).then(wiki =>{
                 if(wiki != undefined && Object.keys(wiki).length != 0){
-                    obj[wiki.englishTitle] = wiki;
+                    if(wiki.englishTitle != undefined){
+                        obj[wiki.englishTitle] = wiki;
+                    }else{
+                        obj.Error = wiki;
+                    }
                     counter++;
                     if(counter == finalPhrases.length){
                         resolve(obj);
