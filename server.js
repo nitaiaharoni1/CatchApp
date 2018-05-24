@@ -82,7 +82,7 @@ async function wikiTerm(term, userLang){
             let langCountry;
             let obj = {};
             let counter = 0;
-            wiki().search(term1).then(data  =>{
+            wiki().search(term1,1).then(data  =>{
                 wiki().page(data.results[0]).then(page =>{
                     findLang(page, userLang).then(arr =>{ //country,langTitle,englishTitle
                         if(arr != undefined && arr.length == 3){
