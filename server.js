@@ -47,11 +47,7 @@ app.get("/input", function(req, res){
     let text = req.headers.text
     let userLang = req.headers.lang.toLowerCase();
     let obj = {};
-    let phrases = text.split(" ");
-    if(phrases.length > 1){
-        phrases.push(text);
-    }
-    phrasesLoopInput(phrases, userLang).then(obj =>{
+    phrasesLoopInput(text, userLang).then(obj =>{
         res.send(obj);
     }).catch(err => console.error(err));
 })
@@ -83,29 +79,20 @@ async function phrasesLoop(phrases, userLang){
     return ret;
 }
 
-async function phrasesLoopInput(phrases, userLang){
+async function phrasesLoopInput(phrase, userLang){
     var ret = await new Promise(resolve =>{
         let lang = userLang;
-        var counter = 0;
         let obj = {};
-        for(var i in phrases){
-            wikiInputTerm(phrases[i], lang).then(wiki =>{
-                if(wiki != undefined){
-                    obj[wiki.englishTitle] = wiki;
-                    counter++;
-                    if(counter == phrases.length){
-                        resolve(obj);
-                    }
-                } else{
-                    counter++;
-                    if(counter == phrases.length){
-                        resolve(obj);
-                    }
-                }
-            }).catch(err =>{
-                console.error(err);
-            });
-        }
+        wikiInputTerm(phrase, lang).then(wiki =>{
+            if(wiki != undefined){
+                obj[wiki.englishTitle] = wiki;
+                resolve(obj);
+            } else{
+                resolve(obj);
+            }
+        }).catch(err =>{
+            console.error(err);
+        });
     });
     return ret;
 }
@@ -145,6 +132,7 @@ async function wikiInputTerm(term, userLang){
             if(searched.results.length == 0){
                 resolve(obj);
             }
+            term = searched.results[0];
             wiki().page(term).then(page =>{
                 page.html().then(html =>{
                     if(html.indexOf("may refer to") != -1){
