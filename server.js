@@ -4,9 +4,17 @@ const cogserv = require('cogserv-text-analytics')({key: "be5cce28a9694bf192daeb2
 const {keyPhrases, sentiment} = require('cogserv-text-analytics')
 
 const TextRazor = require('textrazor')
-//nitai - 1f5b8b282f0efbf7da5f6c543a16a45d58d3ec090ba069c92ffc9587
-//dyny - 60d32def4796a0ba0bc0d0f82d0414f9dcf71f9b681c8d7b2fbee5a9
-const textRazor = new TextRazor('60d32def4796a0ba0bc0d0f82d0414f9dcf71f9b681c8d7b2fbee5a9')
+const textRazorAPIKeys = ["1f5b8b282f0efbf7da5f6c543a16a45d58d3ec090ba069c92ffc9587",
+    "60d32def4796a0ba0bc0d0f82d0414f9dcf71f9b681c8d7b2fbee5a9",
+    "74d2d06182a2d6d1d59d4d4b2d3f2e76f2b63c01c95bb819f66d9646",
+    "5db053efa742e75a2968fdc61e62aa11b3731d4ff0ebe187f92f9561",
+    "5a0725ca1804b4c87b3bb37f4569bd6c02d3db7d839d59158e8735aa",
+    "225b34b0648788914ae9c8739cc692efdb173b7c46b1c54cb4d65d3c",
+    "a101e468ae4fe27c741b94bb9a9e6eb1ee893ec2da7a349fab4a7421",
+    "2b68b24659a55cad0baf57196b6b904daa56bb12af71210c806859d5",
+    "22da8bf65883b4ed8d0b592e81530965b68bc9b68814f47d48cb7b63",
+    "2e014267331c5ac334dddc995eeacc2e7cb02c3889651caad86c016d"]
+
 const wiki = require('wikijs').default; //Wikipedia API
 
 var app = express();
@@ -22,6 +30,7 @@ app.get("", function(req, res){
 });
 
 app.get("/phrases", function(req, res){
+    var textRazor = new TextRazor(textRazorAPIKeys[Math.round(Math.random() * textRazorAPIKeys.length)])
     res.setHeader('Content-Type', 'application/json');
     let textRazorOptions = {extractors: 'entities'}
     let text = req.headers.text.toUpperCase();
